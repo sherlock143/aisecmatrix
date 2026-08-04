@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scam Message Analyzer — Free | AISecMatrix</title>
+<meta name="description" content="Paste an SMS, WhatsApp, or email message and get it flagged for common scam and phishing red flags — urgency, fake links, requests for OTP or payment.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      aisecmatrix<span class="path">/<span class="accent">scam-analyzer</span></span>
+    </div>
+    <nav class="mainnav">
+      <a href="/">Tools</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">tools</a> / scam-analyzer</div>
+    <h1>Scam Message Analyzer</h1>
+    <p>Paste a suspicious SMS, WhatsApp, or email message. This checks it against patterns commonly used in phishing,
+      UPI fraud, delivery scams, and impersonation attempts. Nothing is sent anywhere — this runs entirely in your browser.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-bar">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      pattern-match.local — offline
+    </div>
+    <div class="console-body">
+
+      <div class="field">
+        <label for="msg">Message text</label>
+        <textarea id="msg" placeholder="Paste the message here… e.g. &quot;Your parcel is on hold. Pay Rs.15 customs fee to release: bit.ly/xyz123&quot;"></textarea>
+      </div>
+
+      <button class="btn" id="checkBtn">Analyze message</button>
+
+      <div class="result" id="result">
+        <div id="resultInner"></div>
+      </div>
+
+      <div class="disclaimer">
+        This is pattern-matching, not proof. A message with zero flags can still be a scam, and a legitimate message
+        can occasionally trip a flag. Use this as one signal, not a verdict — never send OTPs, PINs, or payments
+        based on an unsolicited message regardless of what this tool says.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>aisecmatrix.com — security tools for everyone</div>
+    <div class="foot-links">
+      <a href="/tools/qr-scanner.html">QR Scanner</a>
+      <a href="/">All tools</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+// Each rule: { id, weight, label, test(text) }
+const RULES = [
+  {
+    weight: 3, label: 'Asks for OTP, PIN, or CVV',
+    test: t => /\b(otp|one[\s-]?time\s?password|cvv|pin\s?number|card\s?pin)\b/i.test(t)
+  },
+  {
+    weight: 3, label: 'Asks you to send money or pay a "fee" to receive something',
+    test: t => /(pay|send|transfer)\s+(rs\.?|inr|₹|\$)?\s?\d+.*(release|unlock|claim|customs|fee|deliver)/i.test(t)
+      || /(customs|processing|delivery)\s+(fee|charge)/i.test(t)
+  },
+  {
+    weight: 3, label: 'Threatens account suspension / legal action / arrest if you don\'t act',
+    test: t => /(account.*(suspend|block|freeze|lock)|legal action|will be (arrested|prosecuted)|fir will be)/i.test(t)
+  },
+  {
+    weight: 2, label: 'Creates urgency ("within 24 hours", "immediately", "act now")',
+    test: t => /(within\s+\d+\s?(hours|hrs|minutes|mins)|immediately|act now|urgent(ly)?|expires? (today|soon)|last warning)/i.test(t)
+  },
+  {
+    weight: 2, label: 'Contains a shortened or unusual link',
+    test: t => /(bit\.ly|tinyurl|t\.co|shorturl|cutt\.ly|is\.gd|rb\.gy|\.xyz\/|\.top\/|\.click\/)/i.test(t)
+  },
+  {
+    weight: 2, label: 'Claims a prize, refund, or cashback you didn\'t expect',
+    test: t => /(you('| ha)ve\s+won|congratulations.*won|lucky draw|claim your (prize|reward|refund|cashback))/i.test(t)
+  },
+  {
+    weight: 2, label: 'Impersonates a bank, courier, or government body while using a generic/personal domain',
+    test: t => /(update\s?kyc|verify\s?your\s?(account|kyc|bank)|blocked.*re-?activate)/i.test(t)
+  },
+  {
+    weight: 1, label: 'Generic greeting instead of your name ("Dear Customer", "Dear User")',
+    test: t => /(dear (customer|user|sir\/madam|valued))/i.test(t)
+  },
+  {
+    weight: 1, label: 'Poor grammar or unusual phrasing patterns common in mass-sent scams',
+    test: t => /(kindly\s+do\s+the\s+needful|revert\s+back\s+urgently|your\s+kind\s+attention)/i.test(t)
+  },
+  {
+    weight: 1, label: 'Asks to install an app or "screen sharing" tool to fix an issue',
+    test: t => /(anydesk|teamviewer|screen\s?share|install.*app.*(fix|resolve|verify))/i.test(t)
+  },
+];
+
+const msgInput = document.getElementById('msg');
+const btn = document.getElementById('checkBtn');
+const result = document.getElementById('result');
+const resultInner = document.getElementById('resultInner');
+
+function analyze(){
+  const text = msgInput.value.trim();
+  if (!text){ msgInput.focus(); return; }
+
+  const hits = RULES.filter(r => r.test(text));
+  const score = hits.reduce((s, r) => s + r.weight, 0);
+
+  let badgeClass, badgeText, verdict;
+  if (score >= 6){
+    badgeClass = 'danger'; badgeText = 'HIGH RISK'; verdict = 'This message shows strong signs of a scam. Do not click links, reply, call numbers in it, or send any payment or code.';
+  } else if (score >= 3){
+    badgeClass = 'warn'; badgeText = 'SUSPICIOUS'; verdict = 'This message shows some common scam patterns. Verify independently — contact the organization directly using a number or site you already trust, not one from this message.';
+  } else if (score >= 1){
+    badgeClass = 'warn'; badgeText = 'LOW SIGNAL'; verdict = 'A minor flag was found. It may still be legitimate, but stay cautious with links or requests for personal info.';
+  } else {
+    badgeClass = 'safe'; badgeText = 'NO FLAGS DETECTED'; verdict = 'No common scam patterns were matched. This doesn\'t guarantee it\'s safe — stay cautious with any unexpected message.';
+  }
+
+  const flagList = hits.length
+    ? `<ul class="strength-list">${hits.map(h => `<li class="fail"><span class="icon">⚠</span>${escapeHtml(h.label)}</li>`).join('')}</ul>`
+    : `<div style="color:var(--muted); margin-top:12px;">No listed patterns matched.</div>`;
+
+  resultInner.innerHTML = `
+    <span class="badge ${badgeClass}"><span class="dot"></span>${badgeText}</span>
+    <div style="margin-top:14px;">${verdict}</div>
+    ${flagList}
+  `;
+  result.classList.add('show');
+}
+
+btn.addEventListener('click', analyze);
+</script>
+</body>
+</html>

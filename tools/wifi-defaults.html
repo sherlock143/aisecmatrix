@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wi-Fi Router Default Password Lookup — Free | AISecMatrix</title>
+<meta name="description" content="Look up the factory default login credentials for common router brands and models — and learn why you should change them immediately.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      aisecmatrix<span class="path">/<span class="accent">wifi-defaults</span></span>
+    </div>
+    <nav class="mainnav">
+      <a href="/">Tools</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">tools</a> / wifi-defaults</div>
+    <h1>Wi-Fi Router Default Password Lookup</h1>
+    <p>Look up the out-of-the-box admin login for common router brands. If you've never changed this, anyone on
+      your network — or in some cases, the internet — can log in and reconfigure your router.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-bar">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      router-db.local — offline
+    </div>
+    <div class="console-body">
+
+      <div class="field">
+        <label for="search">Search by brand</label>
+        <input type="text" id="search" placeholder="e.g. TP-Link, Netgear, Airtel…" autocomplete="off">
+      </div>
+
+      <div id="resultsWrap"></div>
+
+      <div class="disclaimer">
+        These are widely published factory defaults, not secrets — anyone can search them, including attackers.
+        That's exactly the point: if your router still uses one of these, change the admin password today from the
+        router's settings page (not your Wi-Fi password — the <em>admin login</em> to the router itself).
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>aisecmatrix.com — security tools for everyone</div>
+    <div class="foot-links">
+      <a href="/tools/password-strength.html">Password Checker</a>
+      <a href="/">All tools</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+let DB = [];
+
+async function loadDb(){
+  try {
+    const res = await fetch('/assets/wifi-db.json');
+    DB = await res.json();
+    render(DB);
+  } catch (e) {
+    document.getElementById('resultsWrap').innerHTML = `<div style="color:var(--danger);">Couldn't load the router database.</div>`;
+  }
+}
+
+function render(list){
+  const wrap = document.getElementById('resultsWrap');
+  if (!list.length){
+    wrap.innerHTML = `<div style="color:var(--muted); font-family:var(--mono); font-size:13px; margin-top:16px;">No matching brand found.</div>`;
+    return;
+  }
+  wrap.innerHTML = `
+    <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+      ${list.map(r => `
+        <div style="background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:14px 16px;">
+          <div style="font-family:var(--mono); font-weight:600; margin-bottom:6px;">${escapeHtml(r.brand)} <span style="color:var(--muted); font-weight:400;">— ${escapeHtml(r.models)}</span></div>
+          <div class="result-row"><span class="k">Login address</span><span class="v">${escapeHtml(r.ip)}</span></div>
+          <div class="result-row"><span class="k">Default username</span><span class="v">${escapeHtml(r.username)}</span></div>
+          <div class="result-row"><span class="k">Default password</span><span class="v">${escapeHtml(r.password)}</span></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+document.getElementById('search').addEventListener('input', debounce((e) => {
+  const q = e.target.value.trim().toLowerCase();
+  const filtered = q ? DB.filter(r => r.brand.toLowerCase().includes(q)) : DB;
+  render(filtered);
+}, 150));
+
+loadDb();
+</script>
+</body>
+</html>

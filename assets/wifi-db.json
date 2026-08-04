@@ -1,0 +1,19 @@
+[
+  {"brand":"TP-Link","models":"Archer series (most)","ip":"192.168.0.1 or 192.168.1.1","username":"admin","password":"admin"},
+  {"brand":"TP-Link","models":"Newer models (2019+)","ip":"tplinkwifi.net","username":"— set on first login —","password":"— set on first login —"},
+  {"brand":"D-Link","models":"DIR series (most)","ip":"192.168.0.1","username":"admin","password":"(blank) or admin"},
+  {"brand":"Netgear","models":"Nighthawk / most routers","ip":"192.168.1.1 or routerlogin.net","username":"admin","password":"password"},
+  {"brand":"Asus","models":"RT series","ip":"192.168.1.1 or router.asus.com","username":"admin","password":"admin"},
+  {"brand":"Linksys","models":"Most models","ip":"192.168.1.1","username":"admin","password":"admin"},
+  {"brand":"Tenda","models":"Most models","ip":"192.168.0.1","username":"admin","password":"admin"},
+  {"brand":"Huawei","models":"HG series (ISP-supplied)","ip":"192.168.1.1 or 192.168.3.1","username":"admin","password":"admin"},
+  {"brand":"MikroTik","models":"RouterOS default","ip":"192.168.88.1","username":"admin","password":"(blank)"},
+  {"brand":"Cisco","models":"Small business routers","ip":"192.168.1.1 or 192.168.15.1","username":"cisco or admin","password":"cisco or admin"},
+  {"brand":"Belkin","models":"Most models","ip":"192.168.2.1","username":"(blank)","password":"(blank)"},
+  {"brand":"Xiaomi (Mi)","models":"Mi Router series","ip":"192.168.31.1 or miwifi.com","username":"admin","password":"— set on first login —"},
+  {"brand":"JioFiber","models":"ISP-supplied ONT/router","ip":"192.168.29.1","username":"admin","password":"— check ISP label or JioFiber app —"},
+  {"brand":"Airtel","models":"ISP-supplied router","ip":"192.168.1.1","username":"admin","password":"— check sticker on device —"},
+  {"brand":"BSNL","models":"ISP-supplied ONT (common models)","ip":"192.168.1.1","username":"admin","password":"admin or password"},
+  {"brand":"ACT Fibernet","models":"ISP-supplied router","ip":"192.168.100.1 or 192.168.1.1","username":"admin","password":"— check sticker on device —"},
+  {"brand":"Generic ONU/ONT (GPON)","models":"Various OEM","ip":"192.168.1.1","username":"admin or telecomadmin","password":"admin or admintelecom"}
+]

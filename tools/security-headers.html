@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Headers Scanner — Free | AISecMatrix</title>
+<meta name="description" content="Check any website's HTTP security headers — HSTS, CSP, X-Frame-Options and more — the same checks a penetration tester runs first.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      aisecmatrix<span class="path">/<span class="accent">security-headers</span></span>
+    </div>
+    <nav class="mainnav">
+      <a href="/">Tools</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">tools</a> / security-headers</div>
+    <h1>Security Headers Scanner</h1>
+    <p>Enter any website's address to check the HTTP security headers it sends. These are checks run early in
+      almost every professional web penetration test — missing headers don't guarantee a site is unsafe, but
+      they're a quick signal of how seriously it's configured.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-bar">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      headers-scan.aisecmatrix.com
+    </div>
+    <div class="console-body">
+
+      <div class="field">
+        <label for="target">Website to scan</label>
+        <input type="text" id="target" placeholder="example.com" autocomplete="off">
+      </div>
+
+      <button class="btn" id="scanBtn">Scan headers</button>
+
+      <div class="result" id="result">
+        <div id="resultInner"></div>
+      </div>
+
+      <div class="disclaimer">
+        Only scan sites you own or have permission to test. This tool makes a single standard GET request server-side
+        (the same as visiting the page in a browser) to read its public response headers — it does not probe,
+        exploit, or brute-force anything.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>aisecmatrix.com — security tools for everyone</div>
+    <div class="foot-links">
+      <a href="/tools/password-breach.html">Breach Checker</a>
+      <a href="/">All tools</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+// After deploying worker/headers-worker.js to Cloudflare, paste its URL here.
+const WORKER_URL = "https://aisecmatrix-headers.YOURNAME.workers.dev";
+
+const target = document.getElementById('target');
+const btn = document.getElementById('scanBtn');
+const result = document.getElementById('result');
+const resultInner = document.getElementById('resultInner');
+
+async function scan(){
+  const val = target.value.trim();
+  if (!val){ target.focus(); return; }
+
+  if (WORKER_URL.includes('YOURNAME')) {
+    result.classList.add('show');
+    resultInner.innerHTML = `<span class="badge warn"><span class="dot"></span>BACKEND NOT CONFIGURED</span>
+      <div style="margin-top:14px; color:var(--muted);">
+        This tool needs its Cloudflare Worker deployed first — see <code>/worker/headers-worker.js</code>.
+        Once deployed, update <code>WORKER_URL</code> at the top of this page's script.
+      </div>`;
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Scanning…';
+  result.classList.add('show');
+  resultInner.innerHTML = `<div style="color:var(--muted);">Requesting headers from ${escapeHtml(val)}…</div>`;
+
+  try {
+    const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(val)}`);
+    const data = await res.json();
+
+    if (data.error) {
+      resultInner.innerHTML = `<span class="badge warn"><span class="dot"></span>SCAN FAILED</span>
+        <div style="margin-top:14px; color:var(--muted);">${escapeHtml(data.error)}</div>`;
+      return;
+    }
+
+    const presentCount = data.headers.filter(h => h.present).length;
+    const total = data.headers.length;
+    const badgeClass = presentCount === total ? 'safe' : presentCount >= total/2 ? 'warn' : 'danger';
+    const badgeText = `${presentCount}/${total} SECURITY HEADERS PRESENT`;
+
+    resultInner.innerHTML = `
+      <span class="badge ${badgeClass}"><span class="dot"></span>${badgeText}</span>
+      <div class="result-row" style="margin-top:14px;"><span class="k">Target</span><span class="v">${escapeHtml(data.target)}</span></div>
+      <div class="result-row"><span class="k">HTTP status</span><span class="v">${data.status}</span></div>
+      <ul class="strength-list" style="margin-top:14px;">
+        ${data.headers.map(h => `
+          <li class="${h.present ? 'ok' : 'fail'}">
+            <span class="icon">${h.present ? '✓' : '✕'}</span>
+            <span><strong>${escapeHtml(h.name)}</strong> — ${escapeHtml(h.why)}${h.value ? ` <span style="color:var(--muted);">(${escapeHtml(h.value.slice(0,60))}${h.value.length>60?'…':''})</span>` : ''}</span>
+          </li>`).join('')}
+      </ul>
+    `;
+  } catch (err) {
+    resultInner.innerHTML = `<span class="badge warn"><span class="dot"></span>SCAN FAILED</span>
+      <div style="margin-top:14px; color:var(--muted);">${escapeHtml(err.message)}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Scan headers';
+  }
+}
+
+btn.addEventListener('click', scan);
+target.addEventListener('keydown', e => { if (e.key === 'Enter') scan(); });
+</script>
+</body>
+</html>
