@@ -71,7 +71,9 @@ a:hover{text-decoration:underline;}
 .brand{
   font-family:var(--mono); font-weight:700; font-size:15px;
   color:var(--text); display:flex; align-items:center; gap:10px;
+  text-decoration:none; transition:opacity .15s ease;
 }
+.brand:hover{opacity:0.8; text-decoration:none;}
 .brand-logo{width:22px; height:22px; display:block;}
 .brand .dots{display:flex; gap:5px;}
 .brand .dot{width:8px; height:8px; border-radius:50%;}
@@ -84,6 +86,12 @@ nav.mainnav a:hover, nav.mainnav a.active{color:var(--brand); text-decoration:no
 
 /* ---------- Hero ---------- */
 .hero{padding:64px 0 40px;}
+.hero-split{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:center;}
+.hero-right .console-body .result-row{padding:8px 0;}
+@media (max-width:860px){
+  .hero-split{grid-template-columns:1fr; gap:32px;}
+  .hero-right{order:2;}
+}
 .hero .eyebrow{
   font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
   color:var(--brand); margin-bottom:14px; display:flex; align-items:center; gap:10px;

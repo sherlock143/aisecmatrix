@@ -42,7 +42,14 @@
   "description": "Free, no-signup security tools: password strength checker, breach checker, QR code scanner, scam message analyzer, security header scanner, and more. Everything runs in your browser.",
   "publisher": {
     "@type": "Organization",
-    "name": "AISecMatrix"
+    "name": "AISecMatrix",
+    "url": "https://aisecmatrix.com/",
+    "logo": "https://aisecmatrix.com/assets/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contact@aisecmatrix.com",
+      "contactType": "customer support"
+    }
   }
 }
 </script>
@@ -51,24 +58,45 @@
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand">
+    <a href="/" class="brand">
       <img src="/assets/logo.svg" alt="AISecMatrix" class="brand-logo">
       aisecmatrix<span class="path">/<span class="accent">home</span></span>
-    </div>
+    </a>
     <nav class="mainnav">
       <a href="/" class="active">Tools</a>
       <a href="/blog/">Blog</a>
       <a href="/#about">About</a>
+      <a href="/contact.html">Contact</a>
     </nav>
   </div>
 </div>
 
 <div class="wrap">
 
-  <div class="hero">
-    <div class="eyebrow">free · no signup · runs in your browser</div>
-    <h1>Check before you click.<span class="cursor"></span></h1>
-    <p class="lead">Practical security tools for everyday people — not just security teams. Test a password, spot a scam message, check if a link is safe, or see what a website is exposing. No account, no email required, nothing you enter is stored.</p>
+  <div class="hero hero-split">
+    <div class="hero-left">
+      <div class="eyebrow">free · no signup · runs in your browser</div>
+      <h1>Check before you click.<span class="cursor"></span></h1>
+      <p class="lead">Practical security tools for everyday people — not just security teams. Test a password, spot a scam message, check if a link is safe, or see what a website is exposing. No account, no email required, nothing you enter is stored.</p>
+    </div>
+    <div class="hero-right">
+      <div class="console" style="margin:0;">
+        <div class="console-bar">
+          <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+          status.aisecmatrix.com
+        </div>
+        <div class="console-body" style="font-family:var(--mono); font-size:13px;">
+          <div class="result-row"><span class="k">tools_available</span><span class="v" style="color:var(--brand);">8</span></div>
+          <div class="result-row"><span class="k">cost</span><span class="v" style="color:var(--safe);">$0.00</span></div>
+          <div class="result-row"><span class="k">signup_required</span><span class="v" style="color:var(--safe);">false</span></div>
+          <div class="result-row"><span class="k">data_stored</span><span class="v" style="color:var(--safe);">none</span></div>
+          <div class="result-row"><span class="k">runs_on</span><span class="v">your device</span></div>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:12px;">
+            Built by a working penetration tester. <a href="/#about">Read more →</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="section-label">Tools</div>
@@ -175,6 +203,7 @@
       <a href="/tools/password-strength.html">Password Checker</a>
       <a href="/tools/scam-analyzer.html">Scam Analyzer</a>
       <a href="/tools/security-headers.html">Headers Scanner</a>
+      <a href="/contact.html">Contact</a>
     </div>
   </div>
 </footer>

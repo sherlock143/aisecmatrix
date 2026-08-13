@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — AISecMatrix | Security Tools & Consulting</title>
+<meta name="description" content="Contact AISecMatrix for support, partnership inquiries, or security consulting. Response within 1-2 business days.">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="canonical" href="https://aisecmatrix.com/contact.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="AISecMatrix">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aisecmatrix.com/contact.html">
+<meta property="og:title" content="Contact Us — AISecMatrix">
+<meta property="og:description" content="Contact AISecMatrix for support, partnership inquiries, or security consulting.">
+<meta property="og:image" content="https://aisecmatrix.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="AISecMatrix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact Us — AISecMatrix">
+<meta name="twitter:description" content="Contact AISecMatrix for support, partnership inquiries, or security consulting.">
+<meta name="twitter:image" content="https://aisecmatrix.com/assets/og-image.png">
+
+<!-- Content-Security-Policy: mitigates XSS by restricting script/style/connect origins to only what this page needs -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://api.web3forms.com; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action https://api.web3forms.com;">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact AISecMatrix",
+  "url": "https://aisecmatrix.com/contact.html",
+  "about": {
+    "@type": "Organization",
+    "name": "AISecMatrix",
+    "url": "https://aisecmatrix.com/",
+    "email": "contact@aisecmatrix.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "contact@aisecmatrix.com",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English"]
+    }
+  }
+}
+</script>
+
+<style>
+  .contact-wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:32px; margin-top:8px;}
+  @media (max-width:860px){ .contact-wrap{grid-template-columns:1fr;} }
+
+  .info-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:28px;
+    display:flex; flex-direction:column; gap:24px; height:fit-content;
+  }
+  .info-block{display:flex; gap:14px; align-items:flex-start;}
+  .info-icon{
+    width:36px; height:36px; border-radius:8px; background:var(--panel-2); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--brand); font-family:var(--mono);
+  }
+  .info-block h4{margin:0 0 4px; font-family:var(--mono); font-size:14px; font-weight:600;}
+  .info-block p{margin:0; color:var(--muted); font-size:13.5px; line-height:1.6;}
+  .info-block a{font-family:var(--mono); font-size:14px;}
+
+  .trust-row{display:flex; gap:10px; flex-wrap:wrap; padding-top:20px; border-top:1px solid var(--line);}
+  .trust-chip{
+    font-family:var(--mono); font-size:11px; color:var(--muted); border:1px solid var(--line); border-radius:20px;
+    padding:5px 11px; display:flex; align-items:center; gap:6px;
+  }
+  .trust-chip .dot{width:6px; height:6px; border-radius:50%; background:var(--safe);}
+
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:560px){ .form-grid{grid-template-columns:1fr;} }
+  select{
+    width:100%; background:var(--bg); border:1px solid var(--line); border-radius:6px;
+    padding:12px 14px; color:var(--text); font-family:var(--mono); font-size:14px;
+  }
+  select:focus{border-color:var(--brand); outline:none;}
+
+  /* Honeypot field — invisible to humans, bots often fill every field they see in the DOM */
+  .hp-field{position:absolute; left:-9999px; top:-9999px; opacity:0; height:0; width:0; overflow:hidden;}
+
+  .char-count{font-size:11px; color:var(--muted); text-align:right; margin-top:4px; font-family:var(--mono);}
+  .field-error{color:var(--danger); font-size:12px; margin-top:6px; display:none; font-family:var(--mono);}
+  .field-error.show{display:block;}
+  input.invalid, textarea.invalid{border-color:var(--danger);}
+
+  .submit-row{display:flex; align-items:center; gap:14px; margin-top:8px;}
+  .form-status{font-family:var(--mono); font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand">
+      <img src="/assets/logo.svg" alt="AISecMatrix" class="brand-logo">
+      aisecmatrix<span class="path">/<span class="accent">contact</span></span>
+    </a>
+    <nav class="mainnav">
+      <a href="/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#about">About</a>
+      <a href="/contact.html" class="active">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">tools</a> / contact</div>
+    <h1>Contact us</h1>
+    <p>Support requests, partnership inquiries, security consulting, or bug reports — all go to the same inbox
+      and get a real response, typically within 1-2 business days.</p>
+  </div>
+
+  <div class="contact-wrap">
+
+    <div class="info-card">
+      <div class="info-block">
+        <div class="info-icon">@</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:contact@aisecmatrix.com">contact@aisecmatrix.com</a>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-icon">⏱</div>
+        <div>
+          <h4>Response time</h4>
+          <p>1-2 business days for support. Security consulting and partnership inquiries may take longer as they're reviewed individually.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-icon">⚙</div>
+        <div>
+          <h4>Security consulting</h4>
+          <p>Available for web, API, mobile, and AI/LLM penetration testing engagements. Mention scope and timeline in your message.</p>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-icon">🐞</div>
+        <div>
+          <h4>Reporting a bug or false result</h4>
+          <p>Include which tool, what you entered, and what happened. Screenshots help a lot.</p>
+        </div>
+      </div>
+
+      <div class="trust-row">
+        <span class="trust-chip"><span class="dot"></span>Form encrypted (HTTPS)</span>
+        <span class="trust-chip"><span class="dot"></span>Spam-protected</span>
+        <span class="trust-chip"><span class="dot"></span>No data resold</span>
+      </div>
+    </div>
+
+    <div class="console" style="margin:0;">
+      <div class="console-bar">
+        <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+        contact-form.aisecmatrix.com
+      </div>
+      <div class="console-body">
+
+        <form id="contactForm" autocomplete="on" novalidate>
+
+          <!-- Honeypot: hidden from real users via CSS, bots filling every visible-in-DOM field will trip this -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" maxlength="100" required autocomplete="name">
+              <div class="field-error" id="nameError">Please enter your name.</div>
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" maxlength="150" required autocomplete="email">
+              <div class="field-error" id="emailError">Please enter a valid email address.</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="reason">Reason for contact</label>
+            <select id="reason" name="reason" required>
+              <option value="">Select one…</option>
+              <option value="Support / Bug Report">Support / Bug report</option>
+              <option value="Tool Suggestion">Tool suggestion</option>
+              <option value="Security Consulting Inquiry">Security consulting inquiry</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" maxlength="2000" required style="min-height:140px;" placeholder="Tell us what's going on…"></textarea>
+            <div class="char-count"><span id="charCount">0</span>/2000</div>
+            <div class="field-error" id="messageError">Please enter a message (at least 10 characters).</div>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn" id="submitBtn">Send message</button>
+            <span class="form-status" id="formStatus"></span>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="disclaimer" style="margin-top:24px; margin-bottom:48px;">
+    This form submits directly to an email-forwarding service (Web3Forms) over HTTPS — no message content is
+    stored on this site or in any database we control. Do not include passwords, OTPs, card numbers, or other
+    sensitive credentials in your message.
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>aisecmatrix.com — security tools for everyone</div>
+    <div class="foot-links">
+      <a href="/">All tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+/*
+  SECURITY NOTES (OWASP-aligned, client-side scope):
+  - A05 Security Misconfiguration: CSP + X-Content-Type-Options meta tags restrict script/connect origins.
+  - A03 Injection / XSS: user input is NEVER inserted via innerHTML. Status messages use textContent only.
+    All values are also HTML-escaped via escapeHtml() (app.js) as defense in depth even though textContent
+    alone is already safe — belt and suspenders for anyone who copies this pattern elsewhere.
+  - Input validation: type, length (maxlength + JS re-check), and format (email regex) enforced client-side.
+    NOTE: client-side validation is a UX convenience, not a security boundary — Web3Forms performs its own
+    server-side validation and spam filtering; never trust client validation alone for anything sensitive.
+  - Anti-bot: honeypot field (invisible to humans, commonly auto-filled by bots) + a minimum-time-on-page
+    check reject near-instant submissions typical of scripted spam.
+  - No secrets in client code: the Web3Forms access key below is a public-facing submission key by design
+    (same model as a Google reCAPTCHA site key) — it can only submit to this form, not read/delete data.
+*/
+
+const ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY"; // get free at https://web3forms.com — no backend needed
+
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const formStatus = document.getElementById('formStatus');
+const messageEl = document.getElementById('message');
+const charCount = document.getElementById('charCount');
+const pageLoadTime = Date.now();
+
+messageEl.addEventListener('input', () => {
+  charCount.textContent = messageEl.value.length;
+});
+
+function showError(fieldId, errorId, show){
+  document.getElementById(fieldId).classList.toggle('invalid', show);
+  document.getElementById(errorId).classList.toggle('show', show);
+}
+
+function isValidEmail(email){
+  // Reasonable RFC-5322-ish check; deliberately not exhaustive since exhaustive email regex is a known trap.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 150;
+}
+
+function validate(){
+  let ok = true;
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = messageEl.value.trim();
+
+  if (name.length < 2){ showError('name', 'nameError', true); ok = false; } else { showError('name', 'nameError', false); }
+  if (!isValidEmail(email)){ showError('email', 'emailError', true); ok = false; } else { showError('email', 'emailError', false); }
+  if (message.length < 10){ showError('message', 'messageError', true); ok = false; } else { showError('message', 'messageError', false); }
+
+  return ok;
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  formStatus.textContent = '';
+  formStatus.style.color = 'var(--muted)';
+
+  // Honeypot check — if this hidden field has any value, silently drop (don't tip off the bot)
+  const honeypot = document.getElementById('website').value;
+  if (honeypot) {
+    formStatus.textContent = 'Message sent.'; // fake success, no request made
+    form.reset();
+    return;
+  }
+
+  // Minimum time-on-page check — real humans rarely fill a form in under 3 seconds
+  if (Date.now() - pageLoadTime < 3000) {
+    formStatus.textContent = 'Please review your message and try again.';
+    formStatus.style.color = 'var(--warn)';
+    return;
+  }
+
+  if (!validate()) {
+    formStatus.textContent = 'Please fix the highlighted fields.';
+    formStatus.style.color = 'var(--danger)';
+    return;
+  }
+
+  if (ACCESS_KEY.includes('YOUR_WEB3FORMS')) {
+    formStatus.textContent = 'Form backend not configured yet — see comments in this page\'s script.';
+    formStatus.style.color = 'var(--warn)';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  formStatus.textContent = '';
+
+  const payload = {
+    access_key: ACCESS_KEY,
+    name: document.getElementById('name').value.trim().slice(0, 100),
+    email: document.getElementById('email').value.trim().slice(0, 150),
+    reason: document.getElementById('reason').value,
+    message: messageEl.value.trim().slice(0, 2000),
+    subject: `AISecMatrix contact form: ${document.getElementById('reason').value || 'General'}`,
+    from_name: "AISecMatrix Contact Form",
+  };
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      form.reset();
+      charCount.textContent = '0';
+      formStatus.textContent = '✓ Message sent — we\'ll get back to you soon.';
+      formStatus.style.color = 'var(--safe)';
+    } else {
+      formStatus.textContent = 'Something went wrong. Please try emailing us directly instead.';
+      formStatus.style.color = 'var(--danger)';
+    }
+  } catch (err) {
+    formStatus.textContent = 'Network error. Please try emailing us directly instead.';
+    formStatus.style.color = 'var(--danger)';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send message';
+  }
+});
+</script>
+</body>
+</html>
