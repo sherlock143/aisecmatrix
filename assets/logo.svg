@@ -1,12 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <path d="M16 2 L28 6.5 V15 C28 22.5 22.8 27.8 16 30 C9.2 27.8 4 22.5 4 15 V6.5 L16 2 Z"
-        stroke="#4FD8EA" stroke-width="1.6" fill="#0A0E13"/>
-  <g stroke="#2C7C88" stroke-width="0.6" opacity="0.6">
-    <line x1="10" y1="8" x2="10" y2="24"/>
-    <line x1="16" y1="6" x2="16" y2="27"/>
-    <line x1="22" y1="8" x2="22" y2="24"/>
-    <line x1="6" y1="13" x2="26" y2="13"/>
-    <line x1="6" y1="19" x2="26" y2="19"/>
-  </g>
-  <path d="M11 16.5 L14.5 20 L21.5 12.5" stroke="#3ECF8E" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        stroke="#0F7B5C" stroke-width="1.8" fill="#FFFFFF"/>
+  <path d="M11 16.5 L14.5 20 L21.5 12.5" stroke="#0C7D46" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
