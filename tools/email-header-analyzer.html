@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Header Analyzer — Free | AISecMatrix</title>
+<meta name="description" content="Paste raw email headers and check SPF, DKIM, and DMARC authentication results plus the server routing path — the same checks used to spot spoofed emails.">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="canonical" href="https://aisecmatrix.com/tools/email-header-analyzer.html">
+<meta name="keywords" content="email header analyzer, check SPF DKIM DMARC, is this email spoofed, trace email headers online free">
+<meta name="robots" content="index, follow">
+<meta name="author" content="AISecMatrix">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aisecmatrix.com/tools/email-header-analyzer.html">
+<meta property="og:title" content="Email Header Analyzer — Free | AISecMatrix">
+<meta property="og:description" content="Paste raw email headers and check SPF, DKIM, and DMARC authentication results plus the server routing path.">
+<meta property="og:image" content="https://aisecmatrix.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="AISecMatrix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Email Header Analyzer — Free | AISecMatrix">
+<meta name="twitter:description" content="Paste raw email headers and check SPF, DKIM, and DMARC authentication results plus the server routing path.">
+<meta name="twitter:image" content="https://aisecmatrix.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Email Header Analyzer",
+  "url": "https://aisecmatrix.com/tools/email-header-analyzer.html",
+  "description": "Paste raw email headers and check SPF, DKIM, and DMARC authentication results plus the server routing path.",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "publisher": {"@type": "Organization", "name": "AISecMatrix"}
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="/assets/logo.svg" alt="AISecMatrix" class="brand-logo">
+      aisecmatrix<span class="path">/<span class="accent">email-headers</span></span>
+    </div>
+    <nav class="mainnav">
+      <a href="/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">tools</a> / email-header-analyzer</div>
+    <h1>Email Header Analyzer</h1>
+    <p>Paste the full raw headers of a suspicious email (in Gmail: ⋮ menu → "Show original"; in Outlook: File →
+      Properties → Internet headers). This checks SPF/DKIM/DMARC authentication and shows the server path the
+      email traveled — the same first checks used to spot a spoofed sender. Runs entirely in your browser.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-bar">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      header-parser.local — offline
+    </div>
+    <div class="console-body">
+
+      <div class="field">
+        <label for="headers">Raw email headers</label>
+        <textarea id="headers" style="min-height:180px; font-size:12px;" placeholder="Delivered-To: you@example.com&#10;Received: from ...&#10;Authentication-Results: mx.google.com; spf=pass ...&#10;From: sender@domain.com&#10;..."></textarea>
+      </div>
+
+      <button class="btn" id="checkBtn">Analyze headers</button>
+
+      <div class="result" id="result">
+        <div id="resultInner"></div>
+      </div>
+
+      <div class="disclaimer">
+        A passing SPF/DKIM/DMARC doesn't guarantee an email is legitimate — it only confirms the message wasn't
+        forged in transit. A scammer can register a real domain and pass all three. Always verify unexpected
+        requests (payments, credentials, links) through a separate channel.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>aisecmatrix.com — security tools for everyone</div>
+    <div class="foot-links">
+      <a href="/tools/scam-analyzer.html">Scam Analyzer</a>
+      <a href="/">All tools</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+function parseAuthResults(headerText){
+  const matches = [...headerText.matchAll(/Authentication-Results:.*?(?=\n[A-Za-z-]+:|\n\n|$)/gis)];
+  const combined = matches.map(m => m[0]).join(' ');
+  const get = (mech) => {
+    const re = new RegExp(mech + '\\s*=\\s*(pass|fail|neutral|softfail|none|temperror|permerror)', 'i');
+    const m = combined.match(re);
+    return m ? m[1].toLowerCase() : null;
+  };
+  return { spf: get('spf'), dkim: get('dkim'), dmarc: get('dmarc'), found: matches.length > 0 };
+}
+
+function parseReceivedChain(headerText){
+  const lines = headerText.split(/\n(?=\S)/);
+  const received = lines.filter(l => /^received:/i.test(l.trim()));
+  return received.map(r => {
+    const fromMatch = r.match(/from\s+([^\s;(]+)/i);
+    const byMatch = r.match(/by\s+([^\s;(]+)/i);
+    const ipMatch = r.match(/\[?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]?/);
+    return {
+      from: fromMatch ? fromMatch[1] : '(unknown)',
+      by: byMatch ? byMatch[1] : '(unknown)',
+      ip: ipMatch ? ipMatch[1] : null,
+    };
+  });
+}
+
+function statusBadge(val){
+  if (val === 'pass') return '<span style="color:var(--safe);">✓ PASS</span>';
+  if (val === 'fail' || val === 'permerror') return '<span style="color:var(--danger);">✕ FAIL</span>';
+  if (!val) return '<span style="color:var(--muted);">— not found</span>';
+  return `<span style="color:var(--warn);">△ ${val.toUpperCase()}</span>`;
+}
+
+const headersInput = document.getElementById('headers');
+const btn = document.getElementById('checkBtn');
+const result = document.getElementById('result');
+const resultInner = document.getElementById('resultInner');
+
+function analyze(){
+  const text = headersInput.value.trim();
+  if (!text){ headersInput.focus(); return; }
+
+  const auth = parseAuthResults(text);
+  const chain = parseReceivedChain(text);
+  const fromMatch = text.match(/^From:\s*(.+)$/im);
+  const subjectMatch = text.match(/^Subject:\s*(.+)$/im);
+  const returnPathMatch = text.match(/^Return-Path:\s*<?([^>\s]+)>?/im);
+
+  const failCount = [auth.spf, auth.dkim, auth.dmarc].filter(v => v === 'fail' || v === 'permerror').length;
+  const passCount = [auth.spf, auth.dkim, auth.dmarc].filter(v => v === 'pass').length;
+
+  let badgeClass, badgeText;
+  if (!auth.found) { badgeClass = 'warn'; badgeText = 'NO AUTH DATA FOUND'; }
+  else if (failCount >= 1) { badgeClass = 'danger'; badgeText = 'AUTHENTICATION FAILED'; }
+  else if (passCount === 3) { badgeClass = 'safe'; badgeText = 'FULLY AUTHENTICATED'; }
+  else { badgeClass = 'warn'; badgeText = 'PARTIAL AUTHENTICATION'; }
+
+  const chainHtml = chain.length
+    ? chain.slice(0, 8).map((h, i) => `
+        <div class="result-row">
+          <span class="k">Hop ${i+1}</span>
+          <span class="v">${escapeHtml(h.from)} → ${escapeHtml(h.by)}${h.ip ? ' [' + escapeHtml(h.ip) + ']' : ''}</span>
+        </div>`).join('')
+    : `<div style="color:var(--muted);">No Received headers found to trace.</div>`;
+
+  resultInner.innerHTML = `
+    <span class="badge ${badgeClass}"><span class="dot"></span>${badgeText}</span>
+
+    <div style="margin-top:16px; font-family:var(--mono); font-size:13px;">
+      <div class="result-row"><span class="k">From</span><span class="v">${fromMatch ? escapeHtml(fromMatch[1]) : '—'}</span></div>
+      <div class="result-row"><span class="k">Return-Path</span><span class="v">${returnPathMatch ? escapeHtml(returnPathMatch[1]) : '—'}</span></div>
+      <div class="result-row"><span class="k">Subject</span><span class="v">${subjectMatch ? escapeHtml(subjectMatch[1]) : '—'}</span></div>
+    </div>
+
+    <div style="margin-top:16px; font-family:var(--mono); font-size:13px;">
+      <div class="result-row"><span class="k">SPF</span><span class="v">${statusBadge(auth.spf)}</span></div>
+      <div class="result-row"><span class="k">DKIM</span><span class="v">${statusBadge(auth.dkim)}</span></div>
+      <div class="result-row"><span class="k">DMARC</span><span class="v">${statusBadge(auth.dmarc)}</span></div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div style="font-family:var(--mono); font-size:12px; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Server path (most recent first)</div>
+      ${chainHtml}
+    </div>
+  `;
+  result.classList.add('show');
+}
+
+btn.addEventListener('click', analyze);
+</script>
+</body>
+</html>

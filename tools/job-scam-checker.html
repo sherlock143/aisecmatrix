@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake Job Offer Checker — Free | AISecMatrix</title>
+<meta name="description" content="Paste a job offer or recruiter message and check it for common fake-job and employment-scam red flags — advance fees, WhatsApp-only interviews, unrealistic pay.">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="canonical" href="https://aisecmatrix.com/tools/job-scam-checker.html">
+<meta name="keywords" content="fake job offer checker, is this job offer real, work from home scam checker, job scam India, recruiter WhatsApp scam">
+<meta name="robots" content="index, follow">
+<meta name="author" content="AISecMatrix">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aisecmatrix.com/tools/job-scam-checker.html">
+<meta property="og:title" content="Fake Job Offer Checker — Free | AISecMatrix">
+<meta property="og:description" content="Paste a job offer or recruiter message and check it for common fake-job and employment-scam red flags.">
+<meta property="og:image" content="https://aisecmatrix.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="AISecMatrix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fake Job Offer Checker — Free | AISecMatrix">
+<meta name="twitter:description" content="Paste a job offer or recruiter message and check it for common fake-job and employment-scam red flags.">
+<meta name="twitter:image" content="https://aisecmatrix.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Fake Job Offer Checker",
+  "url": "https://aisecmatrix.com/tools/job-scam-checker.html",
+  "description": "Paste a job offer or recruiter message and check it for common fake-job and employment-scam red flags.",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "publisher": {"@type": "Organization", "name": "AISecMatrix"}
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="/assets/logo.svg" alt="AISecMatrix" class="brand-logo">
+      aisecmatrix<span class="path">/<span class="accent">job-scam-checker</span></span>
+    </div>
+    <nav class="mainnav">
+      <a href="/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">tools</a> / job-scam-checker</div>
+    <h1>Fake Job Offer Checker</h1>
+    <p>Paste a job offer, recruiter message, or interview invite. This checks it against patterns common to fake
+      job scams — advance "training fee" requests, work-from-home schemes, and WhatsApp-only recruiters. Runs
+      entirely in your browser.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-bar">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      pattern-match.local — offline
+    </div>
+    <div class="console-body">
+
+      <div class="field">
+        <label for="msg">Job offer / message text</label>
+        <textarea id="msg" placeholder="Paste the job offer or recruiter message here…"></textarea>
+      </div>
+
+      <button class="btn" id="checkBtn">Analyze offer</button>
+
+      <div class="result" id="result">
+        <div id="resultInner"></div>
+      </div>
+
+      <div class="disclaimer">
+        This is pattern-matching, not proof — some real offers can trip a flag, and some scams have none. Before
+        accepting any job, verify the company independently (its own website, LinkedIn, calling their listed
+        office number) and never pay money to get hired, for training, a "starter kit," or equipment.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>aisecmatrix.com — security tools for everyone</div>
+    <div class="foot-links">
+      <a href="/tools/scam-analyzer.html">Scam Analyzer</a>
+      <a href="/">All tools</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+const RULES = [
+  { weight: 4, label: 'Asks you to pay a fee for training, a "kit," registration, or equipment', test: t => /(pay|deposit|transfer).{0,30}(training fee|registration fee|security deposit|starter kit|equipment fee|processing fee|refundable deposit)/i.test(t) || /(registration|training|processing)\s+fee/i.test(t) },
+  { weight: 3, label: 'Interview or onboarding happens only over WhatsApp/Telegram, never a call or office visit', test: t => /(interview|onboarding|process).{0,40}(whatsapp|telegram)/i.test(t) },
+  { weight: 3, label: 'Offers unusually high pay for very little stated work ("earn ₹X/day", minimal hours)', test: t => /(earn|make)\s*(rs\.?|inr|₹|\$)\s?[\d,]+\s*(per day|\/day|daily)/i.test(t) },
+  { weight: 2, label: 'Asks for bank account, Aadhaar, or ID details before any formal offer letter', test: t => /(aadhaar|pan card|bank (account|details)|ifsc).{0,30}(before|to (proceed|confirm|register))/i.test(t) || /(share|send).{0,20}(aadhaar|bank details|pan card)/i.test(t) },
+  { weight: 2, label: 'No company website, verifiable office address, or LinkedIn presence mentioned', test: t => /(no experience needed|work from home).{0,40}(daily payout|instant payout|same day payment)/i.test(t) },
+  { weight: 2, label: 'Uses generic email (gmail/yahoo) for an "HR" or "company" contact', test: t => /(hr|recruiter|manager).{0,30}@(gmail|yahoo|outlook|hotmail)\.com/i.test(t) },
+  { weight: 2, label: 'Creates urgency to accept immediately ("limited slots", "offer expires today")', test: t => /(limited slots?|hurry|offer expires|only \d+ (spots?|seats?) left|accept (now|immediately))/i.test(t) },
+  { weight: 1, label: 'Vague job description with no real responsibilities listed', test: t => /(data entry|copy paste work|simple online work|part[- ]time online job)/i.test(t) },
+  { weight: 1, label: 'Promises daily/instant payout, unusual for legitimate employment', test: t => /(daily payout|instant payout|same day payment|withdraw (anytime|instantly))/i.test(t) },
+];
+
+const msgInput = document.getElementById('msg');
+const btn = document.getElementById('checkBtn');
+const result = document.getElementById('result');
+const resultInner = document.getElementById('resultInner');
+
+function analyze(){
+  const text = msgInput.value.trim();
+  if (!text){ msgInput.focus(); return; }
+
+  const hits = RULES.filter(r => r.test(text));
+  const score = hits.reduce((s, r) => s + r.weight, 0);
+
+  let badgeClass, badgeText, verdict;
+  if (score >= 6){
+    badgeClass = 'danger'; badgeText = 'HIGH RISK'; verdict = 'This shows strong signs of a fake job scam. Do not pay any fee, share ID/bank details, or proceed further without independently verifying the company.';
+  } else if (score >= 3){
+    badgeClass = 'warn'; badgeText = 'SUSPICIOUS'; verdict = 'Several common scam patterns appear here. Verify the company through its official website and a real phone number before going further.';
+  } else if (score >= 1){
+    badgeClass = 'warn'; badgeText = 'LOW SIGNAL'; verdict = 'A minor flag was found. Could still be legitimate — just verify normally before sharing personal info or paying anything.';
+  } else {
+    badgeClass = 'safe'; badgeText = 'NO FLAGS DETECTED'; verdict = 'No common fake-job patterns were matched. Still do standard verification — legitimate employers never ask you to pay to get hired.';
+  }
+
+  const flagList = hits.length
+    ? `<ul class="strength-list">${hits.map(h => `<li class="fail"><span class="icon">⚠</span>${escapeHtml(h.label)}</li>`).join('')}</ul>`
+    : `<div style="color:var(--muted); margin-top:12px;">No listed patterns matched.</div>`;
+
+  resultInner.innerHTML = `
+    <span class="badge ${badgeClass}"><span class="dot"></span>${badgeText}</span>
+    <div style="margin-top:14px;">${verdict}</div>
+    ${flagList}
+  `;
+  result.classList.add('show');
+}
+
+btn.addEventListener('click', analyze);
+</script>
+</body>
+</html>
