@@ -86,7 +86,7 @@
           status.aisecmatrix.com
         </div>
         <div class="console-body" style="font-family:var(--mono); font-size:13px;">
-          <div class="result-row"><span class="k">tools_available</span><span class="v" style="color:var(--brand);">8</span></div>
+          <div class="result-row"><span class="k">tools_available</span><span class="v" style="color:var(--brand);">9</span></div>
           <div class="result-row"><span class="k">cost</span><span class="v" style="color:var(--safe);">$0.00</span></div>
           <div class="result-row"><span class="k">signup_required</span><span class="v" style="color:var(--safe);">false</span></div>
           <div class="result-row"><span class="k">data_stored</span><span class="v" style="color:var(--safe);">none</span></div>
@@ -105,6 +105,14 @@
 
     <div class="card">
       <span class="tag">01 · passwords</span>
+      <h3>Password Generator</h3>
+      <p>Generate strong, random, cryptographically secure passwords instantly. Customizable length and character sets.</p>
+      <span class="go">Open tool →</span>
+      <a class="card-link" href="/tools/password-generator.html" aria-label="Open Password Generator"></a>
+    </div>
+
+    <div class="card">
+      <span class="tag">02 · passwords</span>
       <h3>Password Strength Checker</h3>
       <p>See how long a password would realistically take to crack, and exactly what's weak about it.</p>
       <span class="go">Open tool →</span>
@@ -112,7 +120,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">02 · passwords</span>
+      <span class="tag">03 · passwords</span>
       <h3>Password Breach Checker</h3>
       <p>Check if a password has already appeared in a known data breach — checked privately, never sent in full.</p>
       <span class="go">Open tool →</span>
@@ -120,7 +128,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">03 · messages</span>
+      <span class="tag">04 · messages</span>
       <h3>Scam Message Analyzer</h3>
       <p>Paste an SMS, WhatsApp, or email message and get flagged red-flag phrases common to fraud attempts.</p>
       <span class="go">Open tool →</span>
@@ -128,7 +136,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">04 · links</span>
+      <span class="tag">05 · links</span>
       <h3>QR Code Safety Scanner</h3>
       <p>Decode a QR code image and see exactly where it leads before you visit it.</p>
       <span class="go">Open tool →</span>
@@ -136,7 +144,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">05 · websites</span>
+      <span class="tag">06 · websites</span>
       <h3>Security Headers Scanner</h3>
       <p>Check any website's HTTP security headers — the same checks a pentester runs first.</p>
       <span class="go">Open tool →</span>
@@ -144,7 +152,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">06 · routers</span>
+      <span class="tag">07 · routers</span>
       <h3>Wi-Fi Default Password Lookup</h3>
       <p>Look up the factory default login for a router by brand and model — and get told to change it.</p>
       <span class="go">Open tool →</span>
@@ -152,7 +160,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">07 · jobs</span>
+      <span class="tag">08 · jobs</span>
       <h3>Fake Job Offer Checker</h3>
       <p>Paste a job offer or recruiter message and check it for common employment-scam red flags.</p>
       <span class="go">Open tool →</span>
@@ -160,7 +168,7 @@
     </div>
 
     <div class="card">
-      <span class="tag">08 · email</span>
+      <span class="tag">09 · email</span>
       <h3>Email Header Analyzer</h3>
       <p>Check SPF, DKIM, and DMARC results plus the routing path — spot a spoofed sender.</p>
       <span class="go">Open tool →</span>
@@ -188,11 +196,48 @@
   </div>
 
   <div id="about" class="section-label">About</div>
-  <p style="color:var(--muted); max-width:640px; margin-bottom:48px;">
-    Built by a working penetration tester. These tools use the same checks used in professional security assessments,
-    simplified for a general audience. Nothing you type is logged, stored, or sent anywhere except where a tool
-    explicitly says otherwise (e.g. checking a domain's public headers, which necessarily contacts that domain).
-  </p>
+  <div class="about-section">
+
+    <p class="about-lead">
+      AISecMatrix is built and maintained by a working penetration tester — the same person doing hands-on
+      web, API, mobile, and AI security assessments professionally. These tools aren't simplified toys; they run
+      the same checks used in real engagements, just packaged for people who aren't security professionals
+      themselves.
+    </p>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="info-icon">◈</div>
+        <h4>Why this exists</h4>
+        <p>Most security advice online is either too vague ("use a strong password") or too technical to act on.
+          These tools skip both problems — paste something in, get a real answer, understand exactly why it
+          matters.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="info-icon">🔒</div>
+        <h4>Privacy by design</h4>
+        <p>Most checks — password strength, scam detection, QR decoding — run entirely inside your browser.
+          Nothing is logged or stored. The few tools that need a server call (breach checking, header scanning)
+          say so explicitly, and only send the minimum needed to work.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="info-icon">⚡</div>
+        <h4>No account, ever</h4>
+        <p>No sign-up, no email capture, no "create an account to see results." Every tool works the moment you
+          land on the page.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="info-icon">🛠</div>
+        <h4>Actively maintained</h4>
+        <p>New tools get added based on what people actually search for and ask about. Found something missing
+          or wrong? <a href="/contact.html">Let us know</a>.</p>
+      </div>
+    </div>
+
+  </div>
 
 </div>
 
