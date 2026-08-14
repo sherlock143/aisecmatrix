@@ -205,7 +205,6 @@ nav.mainnav{position:relative;}
   border:1px solid rgba(255,255,255,0.8);
   box-shadow:0 4px 24px rgba(15,123,92,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
 }
-.card .go{color:var(--brand);}
 
 /* Soft color wash behind glass panels so the blur has something to catch */
 .grid, .about-grid{position:relative;}
@@ -220,24 +219,36 @@ nav.mainnav{position:relative;}
 /* ---------- Tool grid ---------- */
 .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; margin-bottom:24px;}
 .card{
-  border-radius:14px;
+  border-radius:14px; overflow:hidden;
   padding:24px; display:flex; flex-direction:column; gap:10px;
   transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
+.card::after{
+  /* decorative corner shape — a rotated square peeking from the corner, brand's signature accent */
+  content:""; position:absolute; top:-26px; right:-26px; width:64px; height:64px;
+  background:var(--brand); opacity:0.08; border-radius:16px; transform:rotate(20deg);
+  transition:opacity .2s ease, transform .3s ease;
+}
+.card:hover::after{opacity:0.16; transform:rotate(35deg) scale(1.15);}
 .card:hover{
   border-color:rgba(15,123,92,0.35); transform:translateY(-3px);
   background:rgba(255,255,255,0.78);
   box-shadow:0 16px 36px rgba(15,123,92,0.14), inset 0 1px 0 rgba(255,255,255,0.7);
 }
 .card .tag{
-  font-family:var(--mono); font-size:11px; color:var(--brand);
-  background:var(--brand-dim); border-radius:4px; padding:3px 8px;
-  width:fit-content; letter-spacing:0.03em; font-weight:600;
+  font-family:var(--mono); font-size:11px; color:#FFFFFF;
+  background:var(--brand); border-radius:20px; padding:4px 10px;
+  width:fit-content; letter-spacing:0.03em; font-weight:700;
 }
 .card h3{margin:6px 0 0; font-family:var(--display); font-size:18px; font-weight:600; color:var(--text);}
 .card p{margin:0; color:var(--muted); font-size:14px; line-height:1.55;}
-.card .go{font-family:var(--sans); font-weight:600; font-size:13px; color:var(--brand); margin-top:auto; padding-top:10px;}
-.card a.card-link{position:absolute; inset:0;}
+.card .go{
+  font-family:var(--sans); font-weight:600; font-size:13px; color:var(--brand);
+  margin-top:auto; padding-top:10px; display:flex; align-items:center; gap:6px;
+  position:relative; z-index:1;
+}
+.card:hover .go{color:#0C6A4E;}
+.card a.card-link{position:absolute; inset:0; z-index:2;}
 .card{position:relative;}
 
 
