@@ -83,7 +83,84 @@ nav.mainnav{display:flex; gap:24px; font-family:var(--sans); font-size:14px; fon
 nav.mainnav a{color:var(--muted);}
 nav.mainnav a:hover, nav.mainnav a.active{color:var(--brand); text-decoration:none;}
 
-/* ---------- Hero ---------- */
+/* ---------- Announcement bar ---------- */
+.announce{
+  background:#0E1417; color:#E7EDEA; text-align:center; font-size:13.5px;
+  padding:10px 20px; font-family:var(--sans); font-weight:500;
+}
+.announce a{color:#3ED9A3; font-weight:600; margin-left:4px;}
+
+/* ---------- Mega dropdown nav ---------- */
+nav.mainnav{position:relative;}
+.nav-item{position:relative;}
+.nav-item > button{
+  background:none; border:none; font-family:var(--sans); font-size:14px; font-weight:500;
+  color:var(--muted); cursor:pointer; padding:0; display:flex; align-items:center; gap:5px;
+}
+.nav-item > button:hover, .nav-item.open > button{color:var(--brand);}
+.nav-item > button .chev{font-size:10px; transition:transform .15s ease;}
+.nav-item.open > button .chev{transform:rotate(180deg);}
+.mega{
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%);
+  background:#141B1F; border:1px solid rgba(255,255,255,0.10); border-radius:12px;
+  padding:22px; display:none; gap:28px; box-shadow:0 16px 40px rgba(20,24,27,0.18);
+  width:560px; z-index:20;
+}
+.nav-item.open .mega{display:flex;}
+.mega-col{flex:1;}
+.mega-col .mega-label{
+  font-family:var(--mono); font-size:11px; color:#8FA39B; text-transform:uppercase;
+  letter-spacing:0.05em; margin-bottom:10px;
+}
+.mega-col a{
+  display:block; color:#E7EDEA; font-size:13.5px; font-weight:500; padding:6px 0; text-decoration:none;
+}
+.mega-col a:hover{color:#3ED9A3;}
+@media (max-width:860px){
+  .mega{position:static; transform:none; width:auto; box-shadow:none; margin-top:12px; flex-direction:column; gap:16px;}
+}
+
+/* ---------- Dark hero band (full-bleed) ---------- */
+.hero-band{
+  background:#0E1417; color:#E7EDEA; padding:64px 0 0; overflow:hidden;
+  --brand:#3ED9A3; --btn-text:#06131A;
+}
+.hero-band .wrap{position:relative;}
+.hero-band .eyebrow{
+  font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+  color:#3ED9A3; margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  background:rgba(62,217,163,0.12); width:fit-content; padding:6px 14px; border-radius:20px;
+  border:1px solid rgba(62,217,163,0.25);
+}
+.hero-band .eyebrow::before{content:"●"; font-size:8px;}
+.hero-band h1{
+  font-family:var(--display); font-weight:700; font-size:clamp(36px,5.6vw,62px);
+  margin:0 0 20px; line-height:1.04; letter-spacing:-0.02em; color:#FFFFFF; max-width:780px;
+}
+.hero-band h1 .cursor{
+  display:inline-block; width:0.45em; height:0.78em; background:#3ED9A3;
+  margin-left:6px; animation:blink 1.1s steps(1) infinite; vertical-align:-0.03em;
+}
+.hero-band .lead{color:#8FA39B; font-size:18px; line-height:1.65; max-width:600px; margin:0 0 32px;}
+.hero-band .cta-row{display:flex; gap:14px; margin-bottom:56px; flex-wrap:wrap;}
+.hero-band .cta-row .btn.secondary{
+  background:transparent; color:#E7EDEA; border:1px solid rgba(255,255,255,0.2);
+}
+.hero-band .cta-row .btn.secondary:hover{border-color:#3ED9A3; color:#3ED9A3;}
+
+.stat-strip{
+  display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(255,255,255,0.08);
+}
+.stat-strip .stat{padding:24px 8px 28px; border-right:1px solid rgba(255,255,255,0.08);}
+.stat-strip .stat:last-child{border-right:none;}
+.stat-strip .stat .num{font-family:var(--display); font-size:clamp(22px,3vw,32px); font-weight:700; color:#FFFFFF;}
+.stat-strip .stat .label{font-family:var(--mono); font-size:11.5px; color:#8FA39B; margin-top:4px; text-transform:uppercase; letter-spacing:0.04em;}
+@media (max-width:640px){
+  .stat-strip{grid-template-columns:repeat(2,1fr);}
+  .hero-band{padding:44px 0 0;}
+}
+
+/* ---------- Hero (legacy, still used on 404 etc.) ---------- */
 .hero{padding:72px 0 44px;}
 .hero-split{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:center;}
 .hero-right .console-body .result-row{padding:8px 0;}

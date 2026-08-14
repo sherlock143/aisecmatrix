@@ -60,6 +60,7 @@
 </head>
 <body>
 
+<div class="announce">New: Free Password Generator — cryptographically secure, customizable, instant copy.<a href="/tools/password-generator.html">Try it →</a></div>
 <div class="topbar">
   <div class="topbar-inner">
     <a href="/" class="brand">
@@ -67,7 +68,29 @@
       aisecmatrix<span class="path">/<span class="accent">home</span></span>
     </a>
     <nav class="mainnav">
-      <a href="/" class="active">Tools</a>
+      <div class="nav-item">
+        <button type="button">Tools <span class="chev">▾</span></button>
+        <div class="mega">
+          <div class="mega-col">
+            <div class="mega-label">Passwords</div>
+            <a href="/tools/password-generator.html">Password Generator</a>
+            <a href="/tools/password-strength.html">Strength Checker</a>
+            <a href="/tools/password-breach.html">Breach Checker</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-label">Messages &amp; Links</div>
+            <a href="/tools/scam-analyzer.html">Scam Analyzer</a>
+            <a href="/tools/qr-scanner.html">QR Scanner</a>
+            <a href="/tools/job-scam-checker.html">Job Offer Checker</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-label">Websites &amp; Email</div>
+            <a href="/tools/security-headers.html">Header Scanner</a>
+            <a href="/tools/email-header-analyzer.html">Email Analyzer</a>
+            <a href="/tools/wifi-defaults.html">Wi-Fi Defaults</a>
+          </div>
+        </div>
+      </div>
       <a href="/blog/">Blog</a>
       <a href="/#about">About</a>
       <a href="/contact.html">Contact</a>
@@ -75,35 +98,29 @@
   </div>
 </div>
 
-<div class="wrap">
-
-  <div class="hero hero-split">
-    <div class="hero-left">
-      <div class="eyebrow">free · no signup · runs in your browser</div>
-      <h1>Check before you click.<span class="cursor"></span></h1>
-      <p class="lead">Practical security tools for everyday people — not just security teams. Test a password, spot a scam message, check if a link is safe, or see what a website is exposing. No account, no email required, nothing you enter is stored.</p>
-    </div>
-    <div class="hero-right">
-      <div class="console" style="margin:0;">
-        <div class="console-bar">
-          <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
-          status.aisecmatrix.com
-        </div>
-        <div class="console-body" style="font-family:var(--mono); font-size:13px;">
-          <div class="result-row"><span class="k">tools_available</span><span class="v" style="color:var(--brand);">9</span></div>
-          <div class="result-row"><span class="k">cost</span><span class="v" style="color:var(--safe);">$0.00</span></div>
-          <div class="result-row"><span class="k">signup_required</span><span class="v" style="color:var(--safe);">false</span></div>
-          <div class="result-row"><span class="k">data_stored</span><span class="v" style="color:var(--safe);">none</span></div>
-          <div class="result-row"><span class="k">runs_on</span><span class="v">your device</span></div>
-          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:12px;">
-            Built by a working penetration tester. <a href="/#about">Read more →</a>
-          </div>
-        </div>
-      </div>
+<div class="hero-band">
+  <div class="wrap">
+    <div class="eyebrow">free · no signup · runs in your browser</div>
+    <h1>Check before you click.<span class="cursor"></span></h1>
+    <p class="lead">Practical security tools for everyday people — not just security teams. Test a password, spot a scam message, check if a link is safe, or see what a website is exposing. No account, no email required, nothing you enter is stored.</p>
+    <div class="cta-row">
+      <a href="#tools-list" class="btn">Explore free tools</a>
+      <a href="/#about" class="btn secondary">How it works</a>
     </div>
   </div>
+  <div class="wrap">
+    <div class="stat-strip">
+      <div class="stat"><div class="num">9</div><div class="label">Free tools</div></div>
+      <div class="stat"><div class="num">$0</div><div class="label">Forever</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">Signups required</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">Runs in-browser</div></div>
+    </div>
+  </div>
+</div>
 
-  <h2 class="section-label">Free Security Tools</h2>
+<div class="wrap">
+
+  <h2 class="section-label" id="tools-list" style="margin-top:48px;">Free Security Tools</h2>
 
   <div class="grid">
 
@@ -257,5 +274,6 @@
   </div>
 </footer>
 
+<script src="/assets/app.js"></script>
 </body>
 </html>
