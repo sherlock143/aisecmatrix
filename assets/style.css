@@ -195,38 +195,40 @@ nav.mainnav{position:relative;}
 }
 .section-label::after{content:""; flex:1; height:1px; background:var(--line);}
 
-/* ---------- Dark panels: cards, consoles, and about-cards stay dark against the white page,
-   bringing back the terminal aesthetic as an accent rather than the whole-page theme. Since
-   CSS custom properties cascade, redeclaring them here re-themes every descendant automatically. ---------- */
+/* ---------- Glass panels: frosted, translucent cards over a soft colored backdrop.
+   Depth comes from blur + subtle color, not a dark background — so text color never needs
+   to switch contexts, which removes the whole class of bug we hit with the dark-panel approach. ---------- */
 .card, .console, .about-card{
-  --bg:#0E1417;
-  --bg-alt:#12191D;
-  --panel-2:#1B2328;
-  --line:rgba(255,255,255,0.10);
-  --text:#E7EDEA;
-  --muted:#8FA39B;
-  --brand:#3ED9A3;
-  --brand-dim:rgba(62,217,163,0.16);
-  --safe:#3ECF8E;
-  --warn:#F0B94D;
-  --danger:#FF6B5C;
-  --btn-text:#06131A;
-  background:#141B1F;
-  border:1px solid var(--line);
-  color:var(--text);
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid rgba(255,255,255,0.8);
+  box-shadow:0 4px 24px rgba(15,123,92,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
 }
-.card p, .about-card p{color:var(--muted);}
 .card .go{color:var(--brand);}
+
+/* Soft color wash behind glass panels so the blur has something to catch */
+.grid, .about-grid{position:relative;}
+.grid::before, .about-grid::before{
+  content:""; position:absolute; inset:-40px -20px; z-index:-1;
+  background:
+    radial-gradient(480px 280px at 10% 0%, rgba(15,123,92,0.14), transparent 70%),
+    radial-gradient(420px 260px at 90% 40%, rgba(62,217,163,0.12), transparent 70%),
+    radial-gradient(360px 240px at 40% 100%, rgba(191,224,211,0.35), transparent 70%);
+}
 
 /* ---------- Tool grid ---------- */
 .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; margin-bottom:24px;}
 .card{
-  background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  border-radius:14px;
   padding:24px; display:flex; flex-direction:column; gap:10px;
-  transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
-  box-shadow:0 1px 2px rgba(20,24,27,0.03);
+  transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
-.card:hover{border-color:var(--brand); transform:translateY(-2px); box-shadow:0 8px 24px rgba(20,24,27,0.08);}
+.card:hover{
+  border-color:rgba(15,123,92,0.35); transform:translateY(-3px);
+  background:rgba(255,255,255,0.78);
+  box-shadow:0 16px 36px rgba(15,123,92,0.14), inset 0 1px 0 rgba(255,255,255,0.7);
+}
 .card .tag{
   font-family:var(--mono); font-size:11px; color:var(--brand);
   background:var(--brand-dim); border-radius:4px; padding:3px 8px;
@@ -238,6 +240,7 @@ nav.mainnav{position:relative;}
 .card a.card-link{position:absolute; inset:0;}
 .card{position:relative;}
 
+
 /* ---------- Tool page shell ---------- */
 .tool-header{padding:44px 0 8px;}
 .breadcrumb{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:18px;}
@@ -247,11 +250,11 @@ nav.mainnav{position:relative;}
 .tool-header p{color:var(--muted); font-size:16px; line-height:1.65; max-width:640px; margin:0 0 8px;}
 
 .console{
-  background:var(--panel); border:1px solid var(--line); border-radius:12px;
-  margin:24px 0; overflow:hidden; box-shadow:0 1px 3px rgba(20,24,27,0.04);
+  border-radius:14px;
+  margin:24px 0; overflow:hidden;
 }
 .console-bar{
-  background:var(--panel-2); padding:10px 18px; border-bottom:1px solid var(--line);
+  background:rgba(15,123,92,0.06); padding:10px 18px; border-bottom:1px solid rgba(255,255,255,0.6);
   font-family:var(--mono); font-size:12px; color:var(--muted);
   display:flex; align-items:center; gap:8px;
 }
@@ -326,8 +329,7 @@ footer a:hover{color:var(--brand);}
 .about-lead{color:var(--text); font-size:17px; line-height:1.7; max-width:680px; margin:0 0 28px;}
 .about-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px;}
 .about-card{
-  background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px;
-  box-shadow:0 1px 2px rgba(20,24,27,0.03);
+  border-radius:14px; padding:24px;
 }
 .about-card .info-icon{
   width:36px; height:36px; border-radius:9px; background:var(--brand-dim);
