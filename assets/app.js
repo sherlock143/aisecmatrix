@@ -14,24 +14,15 @@ function debounce(fn, wait) {
   };
 }
 
-// Mega-dropdown nav toggle (click-based so it works with touch, not just hover)
+// Slider carousel prev/next controls
 document.addEventListener('DOMContentLoaded', () => {
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(item => {
-    const btn = item.querySelector('button');
-    if (!btn) return;
-    btn.setAttribute('aria-expanded', 'false');
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = item.classList.contains('open');
-      navItems.forEach(i => { i.classList.remove('open'); i.querySelector('button')?.setAttribute('aria-expanded', 'false'); });
-      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
-    });
-  });
-  document.addEventListener('click', () => {
-    navItems.forEach(i => { i.classList.remove('open'); i.querySelector('button')?.setAttribute('aria-expanded', 'false'); });
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') navItems.forEach(i => i.classList.remove('open'));
+  document.querySelectorAll('.slider-wrap').forEach(wrap => {
+    const track = wrap.querySelector('.slider');
+    const prevBtn = wrap.querySelector('.slider-prev');
+    const nextBtn = wrap.querySelector('.slider-next');
+    if (!track) return;
+    const step = () => (track.querySelector('.card')?.offsetWidth || 300) + 16;
+    prevBtn?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    nextBtn?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
   });
 });

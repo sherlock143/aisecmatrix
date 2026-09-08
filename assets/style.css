@@ -207,6 +207,25 @@ nav.mainnav a:hover, nav.mainnav a.active{color:var(--brand); text-decoration:no
     radial-gradient(360px 240px at 40% 100%, rgba(214,232,247,0.45), transparent 70%);
 }
 
+/* ---------- Sliding carousel ---------- */
+.slider-wrap{position:relative;}
+.slider-nav{display:flex; gap:8px; justify-content:flex-end; margin-bottom:14px;}
+.slider-nav button{
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
+  cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text); font-size:16px;
+  transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+.slider-nav button:hover{border-color:var(--brand); color:var(--brand);}
+.slider{
+  display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:2px 2px 14px;
+  scrollbar-width:thin; scrollbar-color:var(--line) transparent;
+}
+.slider::-webkit-scrollbar{height:6px;}
+.slider::-webkit-scrollbar-track{background:transparent;}
+.slider::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
+.slider .card{flex:0 0 300px; scroll-snap-align:start;}
+@media (max-width:560px){ .slider .card{flex-basis:82vw;} }
+
 /* ---------- Tool grid ---------- */
 .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; margin-bottom:24px;}
 .card{
