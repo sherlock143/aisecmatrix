@@ -208,22 +208,36 @@ nav.mainnav a:hover, nav.mainnav a.active{color:var(--brand); text-decoration:no
 }
 
 /* ---------- Sliding carousel ---------- */
-.slider-wrap{position:relative;}
-.slider-nav{display:flex; gap:8px; justify-content:flex-end; margin-bottom:14px;}
+.slider-header{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin:56px 0 20px; flex-wrap:wrap;}
+.slider-header .slider-title{flex:1; min-width:240px;}
+.slider-header .section-label{margin:0 0 8px;}
+.slider-header .section-label::after{display:none;}
+.slider-header p{color:var(--muted); margin:0; max-width:560px;}
+.slider-nav{display:flex; gap:8px; flex-shrink:0;}
 .slider-nav button{
-  width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
+  width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
   cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text); font-size:16px;
-  transition:border-color .15s ease, color .15s ease, background .15s ease;
+  transition:border-color .15s ease, color .15s ease, background .15s ease, transform .1s ease;
 }
-.slider-nav button:hover{border-color:var(--brand); color:var(--brand);}
+.slider-nav button:hover{border-color:var(--brand); color:var(--brand); background:var(--brand-dim);}
+.slider-nav button:active{transform:scale(0.94);}
+
+.slider-wrap{position:relative;}
+.slider-wrap::after{
+  /* fade-out edge signals "more content" instead of an abrupt hard crop */
+  content:""; position:absolute; top:0; right:0; bottom:20px; width:64px; pointer-events:none;
+  background:linear-gradient(to right, transparent, var(--bg) 88%);
+}
+@media (max-width:640px){ .slider-wrap::after{width:32px;} }
+
 .slider{
-  display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:2px 2px 14px;
-  scrollbar-width:thin; scrollbar-color:var(--line) transparent;
+  display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:2px 2px 20px;
+  scrollbar-width:none; -ms-overflow-style:none;
 }
-.slider::-webkit-scrollbar{height:6px;}
-.slider::-webkit-scrollbar-track{background:transparent;}
-.slider::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
-.slider .card{flex:0 0 300px; scroll-snap-align:start;}
+.slider::-webkit-scrollbar{display:none;}
+.slider .card{
+  flex:0 0 300px; scroll-snap-align:start; min-height:300px;
+}
 @media (max-width:560px){ .slider .card{flex-basis:82vw;} }
 
 /* ---------- Tool grid ---------- */
