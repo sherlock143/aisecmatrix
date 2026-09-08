@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let index = 0;
     const total = slides.length;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const autoplayMs = parseInt(wrap.dataset.autoplay || '5000', 10);
     let timer = null;
 
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function prev() { goTo(index - 1); }
 
     function startAutoplay() {
-      if (reducedMotion || !autoplayMs) return;
+      if (!autoplayMs) return;
       stopAutoplay();
       timer = setInterval(next, autoplayMs);
     }
