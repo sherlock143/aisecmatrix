@@ -1,13 +1,7 @@
 // AISecMatrix — Security Headers Worker
-// Deploy this as a Cloudflare Worker (free tier: 100,000 requests/day).
-// It fetches a target site's response headers server-side and returns them
-// as JSON, with CORS enabled so aisecmatrix.com can call it from the browser.
-//
-// Deploy steps:
-// 1. Cloudflare dashboard → Workers & Pages → Create → Worker
-// 2. Paste this file's contents in, deploy
-// 3. Copy the worker URL (e.g. https://aisecmatrix-headers.YOURNAME.workers.dev)
-// 4. Paste that URL into WORKER_URL in /tools/security-headers.html
+// Deploy as a Cloudflare Worker (free tier: 100,000 requests/day).
+// Fetches a target site's response headers server-side and returns them as JSON,
+// with CORS enabled so aisecmatrix.com can call it from the browser.
 
 const ALLOWED_ORIGIN = "https://aisecmatrix.com"; // change if testing locally
 
@@ -22,7 +16,6 @@ const SECURITY_HEADERS = [
 
 export default {
   async fetch(request) {
-    const origin = request.headers.get("Origin");
     const corsHeaders = {
       "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
       "Access-Control-Allow-Methods": "GET, OPTIONS",

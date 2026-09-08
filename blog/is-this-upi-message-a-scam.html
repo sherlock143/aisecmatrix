@@ -10,48 +10,59 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <link rel="canonical" href="https://aisecmatrix.com/blog/is-this-upi-message-a-scam.html">
 <meta name="keywords" content="is this UPI message a scam, UPI fraud SMS, fake delivery SMS scam, bank SMS fraud India, KYC update scam message">
 <meta name="robots" content="index, follow">
 <meta name="author" content="AISecMatrix">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://aisecmatrix.com/blog/is-this-upi-message-a-scam.html">
-<meta property="og:title" content="Is This UPI/SMS Message a Scam? 8 Warning Signs">
-<meta property="og:description" content="A practical guide to spotting fake UPI payment requests, delivery scams, and bank SMS fraud in India.">
+<meta property="og:title" content="Is This UPI/SMS Message a Scam? 8 Warning Signs | AISecMatrix">
+<meta property="og:description" content="A practical guide to spotting fake UPI payment requests, delivery scams, and bank SMS fraud in India — with real example patterns and a free checker tool.">
 <meta property="og:image" content="https://aisecmatrix.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="AISecMatrix">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Is This UPI/SMS Message a Scam? 8 Warning Signs">
-<meta name="twitter:description" content="A practical guide to spotting fake UPI payment requests, delivery scams, and bank SMS fraud in India.">
+<meta name="twitter:title" content="Is This UPI/SMS Message a Scam? 8 Warning Signs | AISecMatrix">
+<meta name="twitter:description" content="A practical guide to spotting fake UPI payment requests, delivery scams, and bank SMS fraud in India — with real example patterns and a free checker tool.">
 <meta name="twitter:image" content="https://aisecmatrix.com/assets/og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Is This UPI/SMS Message a Scam? 8 Warning Signs",
-  "description": "A practical guide to spotting fake UPI payment requests, delivery scams, and bank SMS fraud in India.",
-  "author": {"@type": "Organization", "name": "AISecMatrix"},
-  "publisher": {"@type": "Organization", "name": "AISecMatrix"},
-  "mainEntityOfPage": "https://aisecmatrix.com/blog/is-this-upi-message-a-scam.html"
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aisecmatrix.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://aisecmatrix.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Is This UPI/SMS Message a Scam?",
+      "item": "https://aisecmatrix.com/blog/is-this-upi-message-a-scam.html"
+    }
+  ]
 }
 </script>
+
 <style>
   .article{max-width:720px; padding:40px 0 80px;}
-  .article h2{font-family:var(--mono); font-size:22px; margin-top:40px;}
+  .article h2{font-family:var(--display); font-size:22px; margin-top:40px;}
   .article p{color:var(--text); font-size:16px; line-height:1.7;}
   .article ul{color:var(--text); font-size:16px; line-height:1.8; padding-left:20px;}
-  .article .example{
-    background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--danger);
-    border-radius:6px; padding:14px 18px; font-family:var(--mono); font-size:13.5px; color:var(--muted); margin:16px 0;
-  }
-  .article .cta{
-    margin:36px 0; padding:22px; background:var(--panel-2); border:1px solid var(--brand-dim); border-radius:8px;
-  }
+  .article .example{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--danger); border-radius:6px; padding:14px 18px; font-family:var(--mono); font-size:13.5px; color:var(--muted); margin:16px 0;}
+  .article .cta{margin:36px 0; padding:22px; background:var(--panel-2); border:1px solid var(--brand-dim); border-radius:8px;}
   .article .cta a.btn{display:inline-block; margin-top:10px;}
   .meta{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:8px;}
 </style>
@@ -59,6 +70,7 @@
 <body>
 
 <div class="announce">New: Free Password Generator — cryptographically secure, customizable, instant copy.<a href="/tools/password-generator.html">Try it →</a></div>
+
 <div class="topbar">
   <div class="topbar-inner">
     <a href="/" class="brand">
@@ -89,7 +101,8 @@
           </div>
         </div>
       </div>
-      <a href="/blog/">Blog</a>
+      <a href="/services.html">Services</a>
+      <a href="/blog/" class="active">Blog</a>
       <a href="/#about">About</a>
       <a href="/contact.html">Contact</a>
     </nav>
@@ -100,7 +113,7 @@
   <article class="article">
     <div class="breadcrumb"><a href="/">tools</a> / <a href="/blog/">blog</a> / upi-message-scam</div>
     <div class="meta">GUIDE · 5 MIN READ</div>
-    <h1 style="font-family:var(--mono); font-size:clamp(26px,4vw,38px); margin:8px 0 20px;">Is This UPI/SMS Message a Scam? 8 Warning Signs</h1>
+    <h1 style="font-family:var(--display); font-size:clamp(26px,4vw,38px); margin:8px 0 20px;">Is This UPI/SMS Message a Scam? 8 Warning Signs</h1>
 
     <p>If you've gotten a text about a "pending delivery," a "KYC update," or an unexpected UPI payment request,
       you're not alone — these are some of the most common fraud patterns targeting phones in India right now.
@@ -157,11 +170,13 @@
 
 <footer>
   <div class="wrap">
-    <div>aisecmatrix.com — security tools for everyone</div>
+    <div>aisecmatrix.com — security tools and services</div>
     <div class="foot-links">
-      <a href="/tools/scam-analyzer.html">Scam Analyzer</a>
       <a href="/">All tools</a>
+      <a href="/services.html">Services</a>
+      <a href="/blog/">Blog</a>
       <a href="/contact.html">Contact</a>
+      
     </div>
   </div>
 </footer>
