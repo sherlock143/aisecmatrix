@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG Security Testing Checklist: How to Pentest Retrieval-Augmented Generation | AISecMatrix</title>
+<meta name="description" content="A practical RAG security checklist covering retrieval authorisation, tenant isolation, document poisoning, indirect prompt injection, data exfiltration and vector database security.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<link rel="canonical" href="https://aisecmatrix.com/blog/rag-security-testing-checklist.html">
+<meta name="keywords" content="RAG security, RAG security testing, retrieval augmented generation security, vector database security, RAG pentest, LLM data leakage">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="AISecMatrix">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aisecmatrix.com/blog/rag-security-testing-checklist.html">
+<meta property="og:title" content="RAG Security Testing Checklist: How to Pentest Retrieval-Augmented Generation | AISecMatrix">
+<meta property="og:description" content="A practical RAG security checklist covering retrieval authorisation, tenant isolation, document poisoning, indirect prompt injection, data exfiltration and vector database security.">
+<meta property="og:image" content="https://aisecmatrix.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="AISecMatrix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RAG Security Testing Checklist: How to Pentest Retrieval-Augmented Generation | AISecMatrix">
+<meta name="twitter:description" content="A practical RAG security checklist covering retrieval authorisation, tenant isolation, document poisoning, indirect prompt injection, data exfiltration and vector database security.">
+<meta name="twitter:image" content="https://aisecmatrix.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aisecmatrix.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://aisecmatrix.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "RAG Security Testing Checklist",
+      "item": "https://aisecmatrix.com/blog/rag-security-testing-checklist.html"
+    }
+  ],
+  "@context": "https://schema.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@type": "TechArticle",
+  "headline": "RAG Security Testing Checklist",
+  "description": "A practical RAG security checklist covering retrieval authorisation, tenant isolation, document poisoning, indirect prompt injection, data exfiltration and vector database security.",
+  "url": "https://aisecmatrix.com/blog/rag-security-testing-checklist.html",
+  "mainEntityOfPage": "https://aisecmatrix.com/blog/rag-security-testing-checklist.html",
+  "datePublished": "2026-11-06",
+  "dateModified": "2026-11-06",
+  "image": "https://aisecmatrix.com/assets/og-image.png",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://aisecmatrix.com/#org",
+    "name": "AI Security Matrix",
+    "alternateName": [
+      "ASM",
+      "AISecMatrix"
+    ],
+    "url": "https://aisecmatrix.com/",
+    "logo": "https://aisecmatrix.com/assets/logo.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://aisecmatrix.com/#org",
+    "name": "AI Security Matrix",
+    "alternateName": [
+      "ASM",
+      "AISecMatrix"
+    ],
+    "url": "https://aisecmatrix.com/",
+    "logo": "https://aisecmatrix.com/assets/logo.png"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "AI security"
+    },
+    {
+      "@type": "Thing",
+      "name": "Large language model security"
+    }
+  ],
+  "@context": "https://schema.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the main security risks in RAG applications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Missing per-user authorisation on retrieval, cross-tenant data leakage, indirect prompt injection and poisoning through indexed documents, sensitive data in the corpus, and data exfiltration through rendered links and images."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you secure a vector database?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep it off the public internet, require authentication, enforce tenant and user permissions inside the query filter, remove revoked content promptly, and avoid indexing secrets or unnecessary personal data."
+      }
+    }
+  ],
+  "@context": "https://schema.org"
+}
+</script>
+<style>
+  .article{max-width:760px; padding:40px 0 80px;}
+  .article h2{font-family:var(--display); font-size:22px; margin-top:40px;}
+  .article h3{font-family:var(--display); font-size:17px; margin-top:26px;}
+  .article p, .article li{color:var(--text); font-size:16px; line-height:1.7;}
+  .article ul, .article ol{padding-left:22px;}
+  .article li{margin-bottom:6px;}
+  .article code{font-family:var(--mono); font-size:13.5px; background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:1px 5px;}
+  .article pre{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:6px; padding:14px 18px; font-family:var(--mono); font-size:13px; color:var(--muted); overflow-x:auto; white-space:pre-wrap; word-break:break-word;}
+  .article table{width:100%; border-collapse:collapse; font-size:14.5px; margin:16px 0; display:block; overflow-x:auto;}
+  .article th, .article td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  .article th{background:var(--panel); font-family:var(--mono); font-size:12.5px;}
+  .article .toc{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin:20px 0;}
+  .article .toc ol{margin:6px 0 0;}
+  .article .cta{margin:36px 0; padding:22px; background:var(--panel-2); border:1px solid var(--brand-dim); border-radius:8px;}
+  .article .cta a.btn{display:inline-block; margin-top:10px;}
+  .article .related a{display:block; margin:6px 0;}
+  .meta{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div class="announce">New: Free Prompt Injection Checker — scan any text for LLM attack payloads and hidden instructions.<a href="/tools/prompt-injection-checker.html">Try it →</a></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand">
+      <img src="/assets/logo.svg" alt="AI Security Matrix (ASM)" class="brand-logo">
+      ASM<span class="path">/<span class="accent">blog</span></span>
+    </a>
+    <nav class="mainnav">
+      <a href="/services.html">Services</a>
+      <a href="/tools.html">Free Tools</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/#about">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <article class="article">
+    <div class="breadcrumb"><a href="/">home</a> / <a href="/blog/">blog</a> / rag-security-testing-checklist</div>
+    <div class="meta">AI SECURITY · 6 MIN READ · UPDATED <time datetime="2026-11-06">2026-11-06</time></div>
+    <h1 style="font-family:var(--display); font-size:clamp(26px,4vw,38px); margin:8px 0 20px;">RAG Security Testing Checklist</h1>
+
+    <p>Retrieval-augmented generation (RAG) connects an LLM to your own documents. That makes answers useful — and makes the document store,
+      the retrieval layer and the ingestion pipeline part of your attack surface. Use this checklist to scope and run a RAG security assessment.
+      Items map to the <a href="/blog/owasp-llm-top-10-explained.html">OWASP Top 10 for LLM Applications</a>.</p>
+
+    <h2>1. Access control and tenant isolation (LLM08, LLM02)</h2>
+    <ul>
+      <li>Is retrieval filtered by the <em>requesting user's</em> permissions, or does the bot see everything it was indexed with?</li>
+      <li>In multi-tenant systems, is tenant ID enforced in the vector query itself — not just in the prompt?</li>
+      <li>Ask for documents you shouldn't see by title, topic, author or quoted phrase.</li>
+      <li>Check whether deleted or permission-revoked documents are still retrievable (stale index).</li>
+      <li>Confirm the vector database is not internet-exposed and requires authentication.</li>
+    </ul>
+
+    <h2>2. Ingestion and poisoning (LLM04, LLM01)</h2>
+    <ul>
+      <li>Who can add or edit content that gets indexed — employees, customers, the public web?</li>
+      <li>Plant a document containing an indirect prompt injection and check whether it is retrieved and obeyed.</li>
+      <li>Test hidden payloads: HTML comments, white text, PDF metadata, alt text, Unicode tag characters. Pre-screen samples with the <a href="/tools/prompt-injection-checker.html">Prompt Injection Checker</a>.</li>
+      <li>Does ingestion strip hidden text and invisible characters before embedding?</li>
+      <li>Can a planted document crowd out legitimate answers for high-value queries (e.g. "how do I reset my password")?</li>
+    </ul>
+
+    <h2>3. Output and exfiltration (LLM05, LLM02)</h2>
+    <ul>
+      <li>Are citations and links in answers restricted to trusted domains?</li>
+      <li>Are external markdown images rendered automatically? If yes, test image-URL data exfiltration.</li>
+      <li>Is model output HTML-encoded before display?</li>
+    </ul>
+
+    <h2>4. Sensitive data in the corpus (LLM02)</h2>
+    <ul>
+      <li>Scan the corpus for secrets, credentials and PII that should never have been indexed.</li>
+      <li>Try to extract them with targeted questions ("list any API keys mentioned in the engineering docs").</li>
+      <li>Assess embedding-inversion risk for highly sensitive text stored as vectors.</li>
+    </ul>
+
+    <h2>5. Abuse and availability (LLM10)</h2>
+    <ul>
+      <li>Rate limits on queries and on document upload / ingestion.</li>
+      <li>Maximum document size and number of retrieved chunks.</li>
+      <li>Behaviour with very large or malformed files.</li>
+    </ul>
+
+    <h2>Quick RAG security test matrix</h2>
+    <table>
+      <thead><tr><th>Test</th><th>Pass condition</th></tr></thead>
+      <tbody>
+        <tr><td>User A queries for User B's private doc</td><td>Not retrieved, not summarised</td></tr>
+        <tr><td>Poisoned doc with hidden instruction</td><td>Instruction ignored or stripped at ingestion</td></tr>
+        <tr><td>Answer contains external image URL with data</td><td>Not rendered / blocked by CSP</td></tr>
+        <tr><td>Revoked document</td><td>No longer retrievable</td></tr>
+        <tr><td>Secret-hunting questions</td><td>No credentials or PII returned</td></tr>
+      </tbody>
+    </table>
+
+    <p>For the wider methodology, including agent and tool testing, see the <a href="/blog/ai-security-testing-guide.html">AI security testing guide</a>,
+      and track all controls with the <a href="/tools/owasp-llm-top-10-checklist.html">OWASP LLM Top 10 checklist</a>.</p>
+
+    <div class="cta">
+      <div style="font-family:var(--mono); font-weight:600; margin-bottom:6px;">Building on RAG?</div>
+      <p style="margin:0; color:var(--muted);">ASM tests retrieval authorisation, poisoning and data leakage in RAG and agentic AI systems.</p>
+      <a class="btn" href="/contact.html">Request a scope call →</a>
+    </div>
+
+    <h2>FAQ</h2>
+    <h3>What are the main security risks in RAG applications?</h3>
+    <p>Missing per-user authorisation on retrieval, cross-tenant data leakage, indirect prompt injection and poisoning through indexed documents, sensitive data in the corpus, and data exfiltration through rendered links and images.</p>
+    <h3>How do you secure a vector database?</h3>
+    <p>Keep it off the public internet, require authentication, enforce tenant and user permissions inside the query filter, remove revoked content promptly, and avoid indexing secrets or unnecessary personal data.</p>
+
+    <h2>Related</h2>
+    <div class="related">
+      <a href="/blog/prompt-injection-testing-guide.html">How to test for prompt injection →</a>
+      <a href="/blog/owasp-llm-top-10-explained.html">OWASP LLM Top 10 explained →</a>
+      <a href="/blog/ai-security-testing-guide.html">AI security testing: the complete guide →</a>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between; margin-bottom:24px;">
+      <div style="max-width:320px;">
+        <div style="font-family:var(--display); font-weight:700; font-size:15px; color:var(--text); margin-bottom:8px;">AI Security Matrix (ASM)</div>
+        <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.6;">
+          AI/LLM security testing, penetration testing, and cloud security services — plus free public security tools.
+        </p>
+      </div>
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:10px;">Contact</div>
+        <div style="font-size:13px; line-height:1.9;">
+          <a href="mailto:contact@aisecmatrix.com">contact@aisecmatrix.com</a><br>
+          <span style="color:var(--muted);">Remote / Worldwide</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--line); padding-top:20px;">aisecmatrix.com — AI Security Matrix</div>
+    <div class="foot-links">
+      <a href="/services.html">Services</a>
+      <a href="/tools.html">Free Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/blog/ai-security-testing-guide.html">AI Security Testing Guide</a>
+      <a href="/tools/prompt-injection-checker.html">Prompt Injection Checker</a>
+      <a href="/tools/owasp-llm-top-10-checklist.html">OWASP LLM Top 10 Checklist</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+
+</body>
+</html>
