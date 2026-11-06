@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWASP LLM Top 10 Checklist (2025) — Free Interactive AI Security Checklist | AISecMatrix</title>
+<meta name="description" content="Free interactive OWASP Top 10 for LLM Applications (2025) checklist with 50 practical security tests for chatbots, RAG and AI agents. Track progress and export your results as Markdown.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<link rel="canonical" href="https://aisecmatrix.com/tools/owasp-llm-top-10-checklist.html">
+<meta name="keywords" content="OWASP LLM top 10 checklist, OWASP top 10 for LLM applications 2025, LLM security checklist, AI security checklist, LLM application security, AI red teaming checklist, free AI security tools">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="AISecMatrix">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aisecmatrix.com/tools/owasp-llm-top-10-checklist.html">
+<meta property="og:title" content="OWASP LLM Top 10 Checklist (2025) — Free Interactive AI Security Checklist | AISecMatrix">
+<meta property="og:description" content="Free interactive OWASP Top 10 for LLM Applications (2025) checklist with 50 practical security tests for chatbots, RAG and AI agents. Track progress and export your results as Markdown.">
+<meta property="og:image" content="https://aisecmatrix.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="AISecMatrix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OWASP LLM Top 10 Checklist (2025) — Free Interactive AI Security Checklist | AISecMatrix">
+<meta name="twitter:description" content="Free interactive OWASP Top 10 for LLM Applications (2025) checklist with 50 practical security tests for chatbots, RAG and AI agents. Track progress and export your results as Markdown.">
+<meta name="twitter:image" content="https://aisecmatrix.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aisecmatrix.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://aisecmatrix.com/tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "OWASP LLM Top 10 Checklist",
+      "item": "https://aisecmatrix.com/tools/owasp-llm-top-10-checklist.html"
+    }
+  ],
+  "@context": "https://schema.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@type": "WebApplication",
+  "name": "OWASP LLM Top 10 Checklist (2025)",
+  "url": "https://aisecmatrix.com/tools/owasp-llm-top-10-checklist.html",
+  "description": "Free interactive OWASP Top 10 for LLM Applications (2025) checklist with 50 practical security tests for chatbots, RAG and AI agents. Track progress and export your results as Markdown.",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://aisecmatrix.com/#org",
+    "name": "AI Security Matrix",
+    "alternateName": [
+      "ASM",
+      "AISecMatrix"
+    ],
+    "url": "https://aisecmatrix.com/",
+    "logo": "https://aisecmatrix.com/assets/logo.png"
+  },
+  "@context": "https://schema.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@type": "ItemList",
+  "name": "OWASP Top 10 for LLM Applications 2025",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "LLM01: Prompt Injection"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "LLM02: Sensitive Information Disclosure"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "LLM03: Supply Chain"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "LLM04: Data and Model Poisoning"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "LLM05: Improper Output Handling"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "LLM06: Excessive Agency"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "LLM07: System Prompt Leakage"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "LLM08: Vector and Embedding Weaknesses"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "name": "LLM09: Misinformation"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "name": "LLM10: Unbounded Consumption"
+    }
+  ],
+  "@context": "https://schema.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the OWASP Top 10 for LLM Applications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the OWASP project's ranking of the ten most critical security risks in applications built on large language models. The 2025 edition covers Prompt Injection, Sensitive Information Disclosure, Supply Chain, Data and Model Poisoning, Improper Output Handling, Excessive Agency, System Prompt Leakage, Vector and Embedding Weaknesses, Misinformation and Unbounded Consumption."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who should use this checklist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Developers, security engineers, penetration testers and product owners building or reviewing chatbots, copilots, RAG applications and AI agents. It works as a pre-launch review, a pentest scoping aid or an audit evidence tracker."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my progress saved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your ticks are kept only in your own browser on this device, so you can come back later. Nothing is sent to our servers. Use Export to save a Markdown copy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does completing the checklist mean my AI app is secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A checklist confirms controls exist; it does not prove they work against a motivated attacker. Validate the controls with hands-on adversarial testing such as prompt injection, tool-abuse and data-leakage testing."
+      }
+    }
+  ],
+  "@context": "https://schema.org"
+}
+</script>
+<style>
+  @media print{ .announce,.topbar,footer,.faq,.btn,.article{display:none !important;} details{break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<div class="announce">New: Free Prompt Injection Checker — scan any text for LLM attack payloads and hidden instructions.<a href="/tools/prompt-injection-checker.html">Try it →</a></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand">
+      <img src="/assets/logo.svg" alt="AI Security Matrix (ASM)" class="brand-logo">
+      ASM<span class="path">/<span class="accent">owasp-llm-checklist</span></span>
+    </a>
+    <nav class="mainnav">
+      <a href="/services.html">Services</a>
+      <a href="/tools.html">Free Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#about">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">home</a> / <a href="/tools.html">tools</a> / owasp-llm-top-10-checklist</div>
+    <h1>OWASP LLM Top 10 Checklist (2025)</h1>
+    <p>A free, interactive security checklist for LLM applications, chatbots, RAG pipelines and AI agents — 50 practical controls and tests
+      mapped to the OWASP Top 10 for LLM Applications 2025. Tick what you have verified, track your coverage and export the result.
+      Progress stays in your browser.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-bar">
+      <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+      owasp-llm-checklist.local — offline
+    </div>
+    <div class="console-body">
+      <div class="field" style="margin-bottom:10px;">
+        <label for="appName">Application name (optional, used in the export)</label>
+        <input type="text" id="appName" placeholder="e.g. Customer support chatbot">
+      </div>
+      <div class="meter"><div class="meter-fill" id="meterFill" style="width:0%; background:var(--brand);"></div></div>
+      <div id="meterLabel" style="font-family:var(--mono); font-size:13px; color:var(--muted); margin-bottom:14px;">0 / 50 controls verified</div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+        <button class="btn" id="exportBtn" type="button">Export as Markdown</button>
+        <button class="btn secondary" id="printBtn" type="button">Print / Save PDF</button>
+        <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+      </div>
+      <div id="checklist"></div>
+      <div class="disclaimer">
+        Based on the OWASP Top 10 for LLM Applications 2025. The test items are AISecMatrix's practical interpretation, not official OWASP text.
+        A checklist shows controls exist — it doesn't prove they hold up against an attacker. For hands-on validation see our
+        <a href="/services.html">AI &amp; LLM security testing</a>.
+      </div>
+    </div>
+  </div>
+
+  <div class="article" style="padding:32px 0 0; max-width:760px;">
+    <h2 class="section-label">How to use this LLM security checklist</h2>
+    <p>Work through one category at a time with the people who own the application. For each item, tick it only when you have evidence —
+      a test result, a configuration screenshot or a code reference — not when someone says it is "probably fine". Unticked items become your
+      remediation backlog or your penetration test scope. For the reasoning behind each category, read
+      <a href="/blog/owasp-llm-top-10-explained.html">OWASP LLM Top 10 explained with examples</a>; to test LLM01 hands-on, start with the
+      <a href="/tools/prompt-injection-checker.html">Prompt Injection Checker</a> and the <a href="/blog/prompt-injection-testing-guide.html">prompt injection testing guide</a>.
+      Building retrieval-augmented generation? Pair this with the <a href="/blog/rag-security-testing-checklist.html">RAG security testing checklist</a>.</p>
+  </div>
+
+  <div class="faq">
+    <h2 class="section-label">Common questions</h2>
+      <div class="faq-item"><h3>What is the OWASP Top 10 for LLM Applications?</h3><p>It is the OWASP project&#x27;s ranking of the ten most critical security risks in applications built on large language models. The 2025 edition covers Prompt Injection, Sensitive Information Disclosure, Supply Chain, Data and Model Poisoning, Improper Output Handling, Excessive Agency, System Prompt Leakage, Vector and Embedding Weaknesses, Misinformation and Unbounded Consumption.</p></div>
+      <div class="faq-item"><h3>Who should use this checklist?</h3><p>Developers, security engineers, penetration testers and product owners building or reviewing chatbots, copilots, RAG applications and AI agents. It works as a pre-launch review, a pentest scoping aid or an audit evidence tracker.</p></div>
+      <div class="faq-item"><h3>Is my progress saved?</h3><p>Your ticks are kept only in your own browser on this device, so you can come back later. Nothing is sent to our servers. Use Export to save a Markdown copy.</p></div>
+      <div class="faq-item"><h3>Does completing the checklist mean my AI app is secure?</h3><p>No. A checklist confirms controls exist; it does not prove they work against a motivated attacker. Validate the controls with hands-on adversarial testing such as prompt injection, tool-abuse and data-leakage testing.</p></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between; margin-bottom:24px;">
+      <div style="max-width:320px;">
+        <div style="font-family:var(--display); font-weight:700; font-size:15px; color:var(--text); margin-bottom:8px;">AI Security Matrix (ASM)</div>
+        <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.6;">
+          AI/LLM security testing, penetration testing, and cloud security services — plus free public security tools.
+        </p>
+      </div>
+      <div>
+        <div style="font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:10px;">Contact</div>
+        <div style="font-size:13px; line-height:1.9;">
+          <a href="mailto:contact@aisecmatrix.com">contact@aisecmatrix.com</a><br>
+          <span style="color:var(--muted);">Remote / Worldwide</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--line); padding-top:20px;">aisecmatrix.com — AI Security Matrix</div>
+    <div class="foot-links">
+      <a href="/services.html">Services</a>
+      <a href="/tools.html">Free Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/blog/ai-security-testing-guide.html">AI Security Testing Guide</a>
+      <a href="/tools/prompt-injection-checker.html">Prompt Injection Checker</a>
+      <a href="/tools/owasp-llm-top-10-checklist.html">OWASP LLM Top 10 Checklist</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+<script>
+(function(){
+  const DATA = [["LLM01", "Prompt Injection", "Untrusted input changes how the model behaves.", ["Direct injection tested: instruction override, role-play jailbreaks and multi-turn escalation against every user input field", "Indirect injection tested: payloads planted in documents, web pages, emails, tickets and RAG sources the model reads", "Hidden-text payloads tested (Unicode tag characters, zero-width chars, HTML comments, white-on-white text)", "Trusted instructions and untrusted content are clearly separated (delimiters / structured input) and the model is told untrusted content is data", "High-impact actions require human confirmation, so a successful injection cannot act on its own"]], ["LLM02", "Sensitive Information Disclosure", "The model leaks PII, secrets or confidential data.", ["No secrets, API keys or credentials are placed in prompts, system prompts or retrievable context", "Model cannot return other users' data (cross-tenant / cross-session leakage tested)", "PII and confidential data are redacted or filtered before reaching the model and in outputs", "Training / fine-tuning data reviewed for sensitive records that could be memorised and regurgitated", "Data-exfiltration channels blocked: markdown images, auto-fetched links and external URLs in responses"]], ["LLM03", "Supply Chain", "Third-party models, datasets, plugins or libraries are compromised.", ["Inventory (AI-BOM) of all models, datasets, embeddings, plugins and SDKs with versions and sources", "Models downloaded only from trusted sources with integrity checks; unsafe formats (pickle) avoided or scanned", "Third-party plugins / MCP servers reviewed for permissions, ownership and update channel", "AI dependencies covered by SCA scanning and patching like any other dependency", "Model provider terms reviewed for data retention, training use and data residency"]], ["LLM04", "Data and Model Poisoning", "Training, fine-tuning or embedding data is manipulated.", ["Provenance and access control for training, fine-tuning and RAG ingestion sources", "Ingestion pipeline validates and sanitises content before it is embedded or trained on", "Who can write to the knowledge base / vector store is restricted and logged", "Model behaviour regression-tested after each fine-tune or data refresh (backdoor / trigger checks)", "User feedback loops (thumbs-up, corrections) cannot be abused to shift model behaviour"]], ["LLM05", "Improper Output Handling", "Model output is trusted by downstream systems.", ["LLM output is treated as untrusted user input before rendering (XSS) or passing to other systems", "Output never reaches SQL, shell, eval, file paths or templates without validation / parameterisation", "Generated URLs, markdown and HTML are sanitised or rendered as plain text", "Structured output (JSON / function arguments) is schema-validated before use", "Downstream components apply their own authorisation instead of trusting the model"]], ["LLM06", "Excessive Agency", "Agents and tools can do more than they should.", ["Each tool / plugin has the minimum permissions and scope required (least privilege)", "Tools act with the end user's identity and permissions, not a shared high-privilege service account", "Destructive or financial actions require explicit human approval", "Agent tool calls are logged, rate-limited and reviewable", "Tested: can an injected instruction trigger tool calls (email, file, payment, API) the user did not ask for?"]], ["LLM07", "System Prompt Leakage", "The system prompt exposes secrets or security logic.", ["System prompt contains no credentials, internal URLs or sensitive business logic", "Security controls (authorisation, filtering) are enforced in code, not only in the system prompt", "Extraction attempts tested: 'repeat the text above', translation, encoding and role-play tricks", "Assume the system prompt will leak \u2014 impact of disclosure has been assessed and accepted", "Guardrail / refusal instructions do not reveal what is being protected"]], ["LLM08", "Vector and Embedding Weaknesses", "RAG and vector stores leak or accept malicious data.", ["Vector store enforces per-user / per-tenant access control at query time", "Retrieved chunks are filtered by the requesting user's permissions before reaching the model", "Embedding inversion and cross-tenant retrieval risks assessed for sensitive corpora", "Documents with hidden instructions are detected or neutralised at ingestion", "Vector database is not publicly exposed and requires authentication"]], ["LLM09", "Misinformation", "The model produces confident but false or harmful output.", ["Responses in high-stakes domains (legal, medical, financial, security) are grounded and cite sources", "Hallucinated package names, APIs and links are checked before use (slopsquatting risk)", "Users are clearly told when content is AI-generated and its limitations", "Human review exists for outputs that drive decisions", "Evaluation set measures factual accuracy and is re-run on each model change"]], ["LLM10", "Unbounded Consumption", "Abuse drives cost, denial of service or model theft.", ["Per-user and per-key rate limits and quotas on requests and tokens", "Maximum input length, output length and context size enforced", "Cost / usage anomaly alerting in place (denial-of-wallet)", "Recursive agent loops and tool-call chains have hard limits and timeouts", "Bulk-query patterns that could extract or clone the model are monitored"]]];
+  const KEY = 'asm-owasp-llm-checklist-v1';
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { state = {}; }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} };
+  const root = document.getElementById('checklist');
+  const total = DATA.reduce((n,c)=>n+c[3].length,0);
+
+  root.innerHTML = DATA.map(([id,name,blurb,items]) => `
+    <details class="faq-item" style="margin:10px 0; padding:12px 14px; border:1px solid var(--line); border-radius:8px;" open>
+      <summary style="cursor:pointer; font-family:var(--display); font-weight:600; font-size:16px;">
+        <span style="font-family:var(--mono); color:var(--brand);">${id}</span> · ${escapeHtml(name)}
+        <span class="cat-count" data-cat="${id}" style="font-family:var(--mono); font-size:12px; color:var(--muted); margin-left:6px;"></span>
+      </summary>
+      <p style="margin:6px 0 8px; color:var(--muted); font-size:14px;">${escapeHtml(blurb)}</p>
+      ${items.map((t,i)=>`<label style="display:flex; gap:10px; align-items:flex-start; padding:6px 0; font-size:14.5px; line-height:1.5; cursor:pointer;">
+        <input type="checkbox" data-k="${id}-${i}" style="margin-top:4px; width:16px; height:16px; flex:0 0 auto;"> <span>${escapeHtml(t)}</span></label>`).join('')}
+    </details>`).join('');
+
+  function update(){
+    let done = 0;
+    DATA.forEach(([id,,,items]) => {
+      let c = 0; items.forEach((_,i)=>{ if (state[id+'-'+i]) c++; });
+      done += c;
+      root.querySelector(`.cat-count[data-cat="${id}"]`).textContent = `${c}/${items.length}`;
+    });
+    const pct = Math.round(done/total*100);
+    const fill = document.getElementById('meterFill');
+    fill.style.width = pct + '%';
+    fill.style.background = pct >= 80 ? 'var(--safe)' : pct >= 40 ? 'var(--warn)' : 'var(--danger)';
+    document.getElementById('meterLabel').textContent = `${done} / ${total} controls verified (${pct}%)`;
+  }
+
+  root.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    cb.checked = !!state[cb.dataset.k];
+    cb.addEventListener('change', () => { state[cb.dataset.k] = cb.checked; save(); update(); });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if (!confirm('Clear all ticks?')) return;
+    state = {}; save();
+    root.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false); update();
+  });
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const app = document.getElementById('appName').value.trim() || 'LLM application';
+    let md = `# OWASP LLM Top 10 (2025) checklist — ${app}\n\nGenerated ${new Date().toISOString().slice(0,10)} with https://aisecmatrix.com/tools/owasp-llm-top-10-checklist.html\n`;
+    DATA.forEach(([id,name,,items]) => {
+      md += `\n## ${id} — ${name}\n\n`;
+      items.forEach((t,i)=>{ md += `- [${state[id+'-'+i]?'x':' '}] ${t}\n`; });
+    });
+    const blob = new Blob([md], {type:'text/markdown'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'owasp-llm-top-10-checklist.md';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+  });
+  update();
+})();
+</script>
+</body>
+</html>
