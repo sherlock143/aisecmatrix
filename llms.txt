@@ -1,0 +1,20 @@
+# AI Security Matrix (ASM) — aisecmatrix.com
+
+> AI Security Matrix (ASM, AISecMatrix) provides AI security testing and LLM penetration testing — prompt injection, AI agent and RAG security, AI red teaming — plus web, API, mobile and cloud penetration testing, and free browser-based security tools.
+
+## Services
+- [AI & LLM security testing services](https://aisecmatrix.com/services.html): AI/LLM, red teaming, application, cloud, GRC and advisory services
+- [Contact / request an assessment](https://aisecmatrix.com/contact.html)
+
+## Free AI security tools
+- [Prompt Injection Checker](https://aisecmatrix.com/tools/prompt-injection-checker.html): detects jailbreaks, instruction overrides, hidden Unicode and exfiltration payloads in text, mapped to OWASP LLM Top 10
+- [OWASP LLM Top 10 Checklist (2025)](https://aisecmatrix.com/tools/owasp-llm-top-10-checklist.html): 50 interactive controls and tests for LLM apps, RAG and agents
+
+## AI security guides
+- [AI Security Testing: The Complete Guide](https://aisecmatrix.com/blog/ai-security-testing-guide.html)
+- [How to Test an LLM Application for Prompt Injection](https://aisecmatrix.com/blog/prompt-injection-testing-guide.html)
+- [OWASP Top 10 for LLM Applications (2025) Explained](https://aisecmatrix.com/blog/owasp-llm-top-10-explained.html)
+- [RAG Security Testing Checklist](https://aisecmatrix.com/blog/rag-security-testing-checklist.html)
+
+## Other free security tools
+- [All free tools](https://aisecmatrix.com/tools.html): password generator, strength and breach checkers, scam message analyzer, QR scanner, security headers scanner, Wi-Fi default password lookup, fake job offer checker, email header analyzer

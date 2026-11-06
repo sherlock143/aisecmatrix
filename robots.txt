@@ -1,4 +1,24 @@
 User-agent: *
 Allow: /
 
+# AI search / answer engines: allowed so AISecMatrix can be cited in AI search results.
+# (Model-training crawlers are controlled separately in Cloudflare AI Crawl Control.)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 Sitemap: https://aisecmatrix.com/sitemap.xml
